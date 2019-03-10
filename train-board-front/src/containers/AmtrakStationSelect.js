@@ -48,7 +48,7 @@ class StationSelect extends Component {
               <option value="PDX">Portland Union Station</option>
             </select>
             <button type="button" id="searchBtn" onClick={this.onSubmitAmtrak}>
-              Search This Station
+              See This Station
             </button>
           </div>
         </form>
