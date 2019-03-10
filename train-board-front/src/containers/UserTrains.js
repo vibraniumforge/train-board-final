@@ -8,9 +8,7 @@ import UserBoard from "../components/UserBoard";
 
 class UserTrains extends Component {
   componentDidMount() {
-    this.props.getUserTrains(() =>
-      this.props.history.push("/view_user_trains")
-    );
+    this.props.getUserTrains();
   }
 
   onSubmitTrains = e => {
