@@ -20,6 +20,7 @@ class UserBoard extends Component {
     e.preventDefault();
     console.log("onUpdateTrain in UserBoard fires");
     this.props.updateTrain(parseInt(e.target.dataset.id, 10));
+    this.props.history.push("/new_user_train");
   };
 
   render() {
