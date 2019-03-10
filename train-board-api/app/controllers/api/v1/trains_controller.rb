@@ -1,7 +1,5 @@
 module Api::V1
 class TrainsController < ApplicationController
-
-    # skip_before_action :verify_authenticity_token
     before_action :find_train, only: [:update, :show, :edit, :destroy]
   
     def index
@@ -40,7 +38,6 @@ class TrainsController < ApplicationController
   
     def destroy
       find_train 
-      binding.pry
       @train.destroy
       if @train.destroy
         render json: {data: @train, message: "Train successfully deleted.", success: true}, status: 200
