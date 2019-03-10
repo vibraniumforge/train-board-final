@@ -1,7 +1,8 @@
 const initialState = {
   userTrains: [],
   trainPostResult: [],
-  trainErrors: []
+  trainErrors: [],
+  trainToUpdate: []
 };
 
 export default function userTrainsReducer(state = initialState, action) {
@@ -38,8 +39,22 @@ export default function userTrainsReducer(state = initialState, action) {
       };
       return { ...state, trainErrors: [...state.trainErrors, errors] };
     case "DELETE_TRAIN":
+      const userTrains = state.userTrains.filter(
+        train => train.id !== action.payload.data.data.id
+      );
+      return { ...state, userTrains };
+    case "UPDATE_TRAIN":
+      const updatedTrain = {
+        id: action.payload.data.data.id
+        // 9 more
+      };
       return {
-        userTrains: state.userTrains.filter(train => train.id !== action.id)
+        ...state,
+        trainToUpdate: state.trainToUpdate.map(train =>
+          train.id === action.payload.data.data.id
+            ? (train = updatedTrain)
+            : train
+        )
       };
     // case "UPDATE_TRAIN":
     //   const updatedTrain = {
