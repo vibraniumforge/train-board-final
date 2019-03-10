@@ -34,11 +34,10 @@ class TrainForm extends Component {
     this.props.createTrain(train, () =>
       this.props.history.push("/view_user_trains")
     );
+    this.props.history.push("/view_user_trains");
     this.clearForm();
-    // return <Redirect to="/view_user_trains" />;
   };
 
-  //push to hist here
   clearForm = () => {
     this.setState({
       destination: "",
