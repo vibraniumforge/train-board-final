@@ -28,27 +28,26 @@ class Board extends Component {
     return (
       <React.Fragment>
         <div>
-          {/* <h3>{this.props.date}</h3>
-          <h3>{this.props.currentTime}</h3>
-          <h3>{this.props.currentTime24h}</h3> */}
+          <h3 className="center" />
+          <table>
+            <thead>
+              <tr>
+                <th>Train Number</th>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th>Scheduled Time</th>
+                <th>Scheduled Time - 24h</th>
+                <th>New Time</th>
+                <th>New Time - 24h</th>
+                <th>Origin</th>
+                <th>Remarks</th>
+                <th colSpan="7" />
+              </tr>
+            </thead>
+
+            <tbody id="train-board">{trainsInfo}</tbody>
+          </table>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Train Number</th>
-              <th>Train Name</th>
-              <th>Destination</th>
-              <th>Scheduled Time</th>
-              <th>Scheduled Time - 24h</th>
-              <th>New Time</th>
-              <th>New Time - 24h</th>
-              <th>Origin</th>
-              <th>Remarks</th>
-              <th colSpan="7" />
-            </tr>
-          </thead>
-          <tbody id="train-board">{trainsInfo}</tbody>
-        </table>
       </React.Fragment>
     );
   }
