@@ -10,7 +10,7 @@ class AmtrakStationSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stationSearchInput: "oak"
+      stationSearchInput: ""
     };
   }
 
@@ -41,9 +41,7 @@ class AmtrakStationSearch extends Component {
           </button>
         </div>
         <div id="search-result">
-          {this.props.trains ? (
-            <StationResult trains={this.props.trains} />
-          ) : null}
+          <StationResult trains={this.props.trains} />
         </div>
       </React.Fragment>
     );
