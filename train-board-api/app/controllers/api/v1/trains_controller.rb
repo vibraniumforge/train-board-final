@@ -48,11 +48,8 @@ class TrainsController < ApplicationController
     end
 
     def amtrak_station
-      response = Faraday.get(`http://dixielandsoftware.net/Amtrak/solari/data/#{params[:id]}_schedule.php?data=#{params[:id]}`) 
+      response = Faraday.get("http://dixielandsoftware.net/Amtrak/solari/data/#{params[:id]}_schedule.php?data=#{params[:id]}") 
       body = JSON.parse(response.body)
-      # binding.pry
-      # uri = `http://dixielandsoftware.net/Amtrak/solari/data/#{params[:id]}_schedule.php?data=#{params[:id]}`
-      # result = JSON.parse(Net::HTTP.get(URI.parse(uri)))
       if response.success? 
         @trains = body["response"]
         render json: {data: @trains, message: "Amtrak info found", success: true}, status: 200
@@ -62,8 +59,8 @@ class TrainsController < ApplicationController
     end
 
     def amtrak_search
-      uri = `https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=#{params[:id]}`
-      result = JSON.parse(Net::HTTP.get(URI.parse(uri)))
+      response = Faraday.get("http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=#{params[:id]}") 
+      body = JSON.parse(response.body)
       if result.success? 
         @trains = body["response"]
         render json: {data: @trains, message: "Amtrak info found", success: true}, status: 200
@@ -71,18 +68,6 @@ class TrainsController < ApplicationController
         render json: {data: @train.errors, message: "Amtrak info not found.", success:false}, status: 406
       end
     end
-
- 
-  
-  
-    # def getAmtrak
-    #   response = Faraday.get('http://dixielandsoftware.net/Amtrak/solari/data/LAX_schedule.php?data=LAX') do |req|
-    #     req.params["station"]=params[:station]
-    #   end
-    #   body = JSON.parse(response.body)
-    #   @trains = body["response"]
-    #   render json: {data: @trains, message: "Amtrak info found", success: true}, status: 200
-    # end
   
     private
   
