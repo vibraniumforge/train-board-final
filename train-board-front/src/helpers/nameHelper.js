@@ -43,7 +43,8 @@ const nameHelper = name => {
       return "Capitol Limited";
     case "Hoosier St.":
       return "Hoosier State";
-
+    case "Riv. Runner":
+      return "River Runner";
     default:
       return name;
   }
