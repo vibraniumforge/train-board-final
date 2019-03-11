@@ -13,13 +13,13 @@ class UserBoard extends Component {
   onDeleteTrain = e => {
     e.preventDefault();
     console.log("onDeleteTrain in UserBoard fires");
-    this.props.deleteTrain(parseInt(e.target.dataset.id, 10));
+    this.props.deleteTrain(e.target.dataset.id);
   };
 
   onUpdateTrain = e => {
     e.preventDefault();
     console.log("onUpdateTrain in UserBoard fires");
-    this.props.updateTrain(parseInt(e.target.dataset.id, 10));
+    this.props.updateTrain(e.target.dataset.id);
     this.props.history.push("/new_user_train");
   };
 
