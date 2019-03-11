@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { getAmtrakStation } from "../actions/amtrakTrainActions";
+import { getAmtrakTrains } from "../actions/amtrakTrainActions";
 
 class StationResult extends Component {
   constructor(props) {
@@ -14,78 +14,74 @@ class StationResult extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log("cdm fires");
+    console.log("this.props.trains in CDM=", this.props.trains);
+    this.fixAr();
+  }
+
   componentDidUpdate(prevProps) {
     console.log("cdu fires");
-    console.log(prevProps);
-    console.log(this.props.trains);
+    console.log("prevProps=", prevProps.trains);
+    console.log("this.props.trains in CDU=", this.props.trains);
     if (this.props.trains.length !== prevProps.trains.length) {
+      console.log("Cdu logic fires");
       this.fixAr();
     }
   }
 
   fixAr() {
     console.log("fixAr fires");
-
     if (this.props.trains) {
       const trainsString = this.props.trains;
-      console.log("trainsString=", trainsString);
+      console.log("trainsString in fixAr=", trainsString);
       let newAr = [];
-      newAr = trainsString
+      trainsString
         .split('blank">')
         .slice(1)
         .forEach(place =>
           newAr.push(
             `<a href="https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=${place
               .trim()
-              .slice(0, 3)}" target="_blank">${place
+              .slice(0, 3)}"target="_blank">${place
               .split("")
               .slice(4, place.indexOf("<"))
               .join("")}</a><br>`
           )
         );
-      console.log("newAr=", newAr);
-      this.setState({ placeAr: newAr });
+      console.log("newAr in fixAr=", newAr);
+      this.setState({ placeAr: newAr }, () =>
+        console.log("setstate fires", this.state.placeAr)
+      );
     }
   }
 
   render() {
-    // const trainsString = this.props.trains;
-    // console.log("trainsString=", trainsString);
-    // let newAr = [];
-    // console.log("newAr=", newAr);
-    // newAr = trainsString
-    //   .split('blank">')
-    //   .slice(1)
-    //   .forEach(place =>
-    //     newAr.push(
-    //       `<a href="https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=${place
-    //         .trim()
-    //         .slice(0, 3)}" target="_blank">${place
-    //         .split("")
-    //         .slice(4, place.indexOf("<"))
-    //         .join("")}</a> <br>`
-    //     )
-    //   );
-    console.log("t.p.t=", this.props.trains);
-    if (this.props.trains) {
-      console.log("t.p.t2=", this.props.trains);
-      const places =
-        this.state.placeAr && this.state.placeAr.map(place => place);
-    }
-
-    // console.log("places=", places);
-
+    // console.log("t.p.t in render=", this.props.trains);
+    const places =
+      this.state.placeAr &&
+      this.state.placeAr !== [] &&
+      this.state.placeAr.map((place, index) => (
+        <ul>
+          <li key={index}>
+            <button type="button" onClick={this.props.getAmtrakTrains()}>
+              {place.innerHTML}
+            </button>
+          </li>
+        </ul>
+      ));
+    console.log("places in render=", places);
     return (
       <React.Fragment>
         <div
           id="search-result"
           dangerouslySetInnerHTML={{ __html: this.props.trains }}
         />
+        <div id="search-result2" dangerouslySetInnerHTML={{ __html: places }} />
         <div
           className="hidden"
           dangerouslySetInnerHTML={{ __html: this.props.trains }}
         />
-        {/* <div>{places}</div> */}
       </React.Fragment>
     );
   }
@@ -143,7 +139,7 @@ class StationResult extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getAmtrakStation
+      getAmtrakTrains
     },
     dispatch
   );
