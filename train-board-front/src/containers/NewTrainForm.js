@@ -31,9 +31,7 @@ class TrainForm extends Component {
     console.log("trainform onSubmit fires");
     e.preventDefault();
     const train = this.state;
-    this.props.createTrain(train, () =>
-      this.props.history.push("/view_user_trains")
-    );
+    this.props.createTrain(train);
     this.props.history.push("/view_user_trains");
     this.clearForm();
   };
