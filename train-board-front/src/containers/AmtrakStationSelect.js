@@ -45,7 +45,7 @@ class StationSelect extends Component {
               <option value="SAN">San Diego Santa Fe Depot</option>
               <option value="EMY">Emeryville (Oakland) CA</option>
               <option value="SEA">Seattle King Street Station</option>
-              <option value="PDX">Portland Union Station</option>
+              <option value="STL">St. Louis Gateway Transit Center</option>
             </select>
             <button type="button" id="searchBtn" onClick={this.onSubmitAmtrak}>
               See This Station
