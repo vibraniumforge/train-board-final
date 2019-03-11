@@ -1,5 +1,6 @@
 module Api::V1
 class TrainsController < ApplicationController
+
     before_action :find_train, only: [:update, :show, :edit, :destroy]
   
     def index
@@ -45,6 +46,33 @@ class TrainsController < ApplicationController
         render json: {data: @train.errors, message: "Train not successfully deleted.", success:false}, status: 406
       end
     end
+
+    def amtrak_station
+      response = Faraday.get(`http://dixielandsoftware.net/Amtrak/solari/data/#{params[:id]}_schedule.php?data=#{params[:id]}`) 
+      body = JSON.parse(response.body)
+      # binding.pry
+      # uri = `http://dixielandsoftware.net/Amtrak/solari/data/#{params[:id]}_schedule.php?data=#{params[:id]}`
+      # result = JSON.parse(Net::HTTP.get(URI.parse(uri)))
+      if response.success? 
+        @trains = body["response"]
+        render json: {data: @trains, message: "Amtrak info found", success: true}, status: 200
+      else 
+        render json: {data: @train.errors, message: "Amtrak info not found.", success:false}, status: 406
+      end
+    end
+
+    def amtrak_search
+      uri = `https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=#{params[:id]}`
+      result = JSON.parse(Net::HTTP.get(URI.parse(uri)))
+      if result.success? 
+        @trains = body["response"]
+        render json: {data: @trains, message: "Amtrak info found", success: true}, status: 200
+      else 
+        render json: {data: @train.errors, message: "Amtrak info not found.", success:false}, status: 406
+      end
+    end
+
+ 
   
   
     # def getAmtrak
@@ -65,6 +93,7 @@ class TrainsController < ApplicationController
     def find_train
       @train=Train.find(params[:id])
     end
-    end
+    
   end
+end
   
