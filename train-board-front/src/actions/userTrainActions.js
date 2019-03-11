@@ -123,42 +123,42 @@ export const updateTrain = id => {
 //   };
 // };
 
-export const deleteTrain = id => {
-  console.log("deleteTrain in userTrainActions fires");
-  let data = {
-    method: "DELETE",
-    mode: "no-cors",
-    headers: {
-      Accept: "application/json",
-      // "Content-Type": "application/json",
-      mode: "no-cors",
-      cache: "no-cache"
-    }
-  };
-  return dispatch => {
-    fetch(`${url}/trains/${id}`, data)
-      .then(res => res.json())
-      .then(train =>
-        dispatch({
-          type: "DELETE_TRAIN",
-          payload: train
-        })
-      )
-      .catch(err => console.log("Error in deleteTrain=", err));
-  };
-};
-
-// export const deleteTrain = train => {
+// export const deleteTrain = id => {
 //   console.log("deleteTrain in userTrainActions fires");
+//   let data = {
+//     method: "DELETE",
+//     mode: "no-cors",
+//     headers: {
+//       Accept: "application/json",
+//       // "Content-Type": "application/json",
+//       mode: "no-cors",
+//       cache: "no-cache"
+//     }
+//   };
 //   return dispatch => {
-//     axios
-//       .delete(`http://localhost:3001/api/v1/trains/${train}`)
-//       .then(res =>
+//     fetch(`${url}/trains/${id}`, data)
+//       .then(res => res.json())
+//       .then(train =>
 //         dispatch({
 //           type: "DELETE_TRAIN",
-//           payload: res
+//           payload: train
 //         })
 //       )
 //       .catch(err => console.log("Error in deleteTrain=", err));
 //   };
 // };
+
+export const deleteTrain = train => {
+  console.log("deleteTrain in userTrainActions fires");
+  return dispatch => {
+    axios
+      .delete(`http://localhost:3001/api/v1/trains/${train}`)
+      .then(res =>
+        dispatch({
+          type: "DELETE_TRAIN",
+          payload: res
+        })
+      )
+      .catch(err => console.log("Error in deleteTrain=", err));
+  };
+};
