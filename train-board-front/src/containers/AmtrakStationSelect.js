@@ -41,11 +41,11 @@ class StationSelect extends Component {
               <option value="PHL">Philadelphia 30th Street</option>
               <option value="BOS">Boston South Station</option>
               <option value="CHI">Chicago Union Station</option>
+              <option value="STL">St. Louis Gateway Transit Center</option>
               <option value="LAX">Los Angeles Union Station </option>
               <option value="SAN">San Diego Santa Fe Depot</option>
               <option value="EMY">Emeryville (Oakland) CA</option>
               <option value="SEA">Seattle King Street Station</option>
-              <option value="STL">St. Louis Gateway Transit Center</option>
             </select>
             <button type="button" id="searchBtn" onClick={this.onSubmitAmtrak}>
               See This Station
