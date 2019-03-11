@@ -1,6 +1,10 @@
 const url = "http://localhost:3001/api/v1";
 
 export const getAmtrakTrains = station => {
+  console.log(
+    "agetAmtrakTrains in amtrakTrainActions fires, station=",
+    station
+  );
   let data = {
     method: "GET",
     headers: {
@@ -10,11 +14,13 @@ export const getAmtrakTrains = station => {
     }
   };
   return dispatch => {
-    fetch(
-      `https://cors-anywhere.herokuapp.com/http://dixielandsoftware.net/Amtrak/solari/data/${station}_schedule.php?data=${station}`,
-      data
-    )
+    // fetch(
+    //   `https://cors-anywhere.herokuapp.com/http://dixielandsoftware.net/Amtrak/solari/data/${station}_schedule.php?data=${station}`,
+    //   data
+    // )
+    fetch(`${url}/amtrak-station/${station}`, data)
       .then(res => res.json())
+      // .then(res => console.log(res))
       .then(res =>
         dispatch({
           type: "GET_AMTRAK_TRAINS",
@@ -42,6 +48,7 @@ export const getAmtrakStation = station => {
       `https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=${station}`,
       data
     )
+      // fetch(`${url}/station-search/${station}`, data)
       .then(res => res.text())
       // .then(res => document.querySelectorAll("table").item(0))
       // .then(res => console.log(res))
