@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { getAmtrakStation } from "../actions/amtrakTrainActions";
+
 class StationResult extends Component {
   constructor(props) {
     super(props);
@@ -8,9 +14,18 @@ class StationResult extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log("cdm fires");
-    // console.log("prevProps=", prevProps);
+  componentDidUpdate(prevProps) {
+    console.log("cdu fires");
+    console.log(prevProps);
+    console.log(this.props.trains);
+    if (this.props.trains.length !== prevProps.trains.length) {
+      this.fixAr();
+    }
+  }
+
+  fixAr() {
+    console.log("fixAr fires");
+
     if (this.props.trains) {
       const trainsString = this.props.trains;
       console.log("trainsString=", trainsString);
@@ -25,7 +40,7 @@ class StationResult extends Component {
               .slice(0, 3)}" target="_blank">${place
               .split("")
               .slice(4, place.indexOf("<"))
-              .join("")}</a> <br>`
+              .join("")}</a><br>`
           )
         );
       console.log("newAr=", newAr);
@@ -51,8 +66,15 @@ class StationResult extends Component {
     //         .join("")}</a> <br>`
     //     )
     //   );
-    const places = this.state.placeAr && this.state.placeAr.map(place => place);
-    console.log("places=", places);
+    console.log("t.p.t=", this.props.trains);
+    if (this.props.trains) {
+      console.log("t.p.t2=", this.props.trains);
+      const places =
+        this.state.placeAr && this.state.placeAr.map(place => place);
+    }
+
+    // console.log("places=", places);
+
     return (
       <React.Fragment>
         <div
@@ -63,13 +85,13 @@ class StationResult extends Component {
           className="hidden"
           dangerouslySetInnerHTML={{ __html: this.props.trains }}
         />
-        <div>{places}</div>
+        {/* <div>{places}</div> */}
       </React.Fragment>
     );
   }
 }
 
-export default StationResult;
+// export default StationResult;
 
 // var span = document.createElement("span");
 // span.innerHTML = trainsString;
@@ -117,3 +139,18 @@ export default StationResult;
 //     )
 //   );
 // }
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      getAmtrakStation
+    },
+    dispatch
+  );
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(StationResult)
+);
