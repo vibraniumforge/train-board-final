@@ -20,7 +20,6 @@ class AmtrakStationSearch extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    // const station = this.state.stationSearchInput;
     this.props.getAmtrakStation(this.state.stationSearchInput);
   };
 
