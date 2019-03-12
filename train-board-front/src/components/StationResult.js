@@ -17,6 +17,7 @@ class StationResult extends Component {
   componentDidMount() {
     console.log("cdm fires");
     console.log("this.props.trains in CDM=", this.props.trains);
+    this.setState({ placeAr: [] });
     this.fixAr();
   }
 
@@ -30,6 +31,11 @@ class StationResult extends Component {
     }
   }
 
+  sendStationRequest = e => {
+    this.props.getAmtrakTrains(e.target.dataset.stationcode);
+    this.props.history.push("/select_amtrak_station");
+  };
+
   fixAr() {
     console.log("fixAr fires");
     if (this.props.trains) {
@@ -40,101 +46,38 @@ class StationResult extends Component {
         .split('blank">')
         .slice(1)
         .forEach(place =>
-          newAr.push(
-            `<a href="https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=${place
-              .trim()
-              .slice(0, 3)}"target="_blank">${place
-              .split("")
-              .slice(4, place.indexOf("<"))
-              .join("")}</a><br>`
-          )
+          newAr.push(place.trim().slice(0, place.indexOf("<")))
         );
-      console.log("newAr in fixAr=", newAr);
       this.setState({ placeAr: newAr }, () =>
-        console.log("setstate fires", this.state.placeAr)
+        console.log("setstate fires", "this.state.placeAr=", this.state.placeAr)
       );
     }
   }
 
   render() {
-    // console.log("t.p.t in render=", this.props.trains);
     const places =
       this.state.placeAr &&
       this.state.placeAr !== [] &&
       this.state.placeAr.map((place, index) => (
-        <ul>
-          <li key={index}>
-            <button type="button" onClick={this.props.getAmtrakTrains()}>
-              {place.innerHTML}
-            </button>
-          </li>
-        </ul>
+        <li key={index}>
+          <button
+            type="button"
+            onClick={this.sendStationRequest}
+            data-stationcode={place.slice(0, 3)}
+          >
+            {place}
+          </button>
+        </li>
       ));
-    console.log("places in render=", places);
     return (
       <React.Fragment>
-        <div
-          id="search-result"
-          dangerouslySetInnerHTML={{ __html: this.props.trains }}
-        />
-        <div id="search-result2" dangerouslySetInnerHTML={{ __html: places }} />
-        <div
-          className="hidden"
-          dangerouslySetInnerHTML={{ __html: this.props.trains }}
-        />
+        <div>
+          <ul>{places}</ul>
+        </div>
       </React.Fragment>
     );
   }
 }
-
-// export default StationResult;
-
-// var span = document.createElement("span");
-// span.innerHTML = trainsString;
-// console.log(span.innerHTML);
-// // let newAr = [];
-// console.log(
-//   document
-//     .getElementsByTagName("table")
-//     .item(0)
-//     .textContent.trim()
-//     .split("\n ")
-// );
-// let text = document
-//   .getElementsByTagName("table")
-//   .item(0)
-//   .textContent.trim()
-//   .split("\n ");
-// console.log("text=", text);
-
-// const trainsString = this.props.trains;
-// let newAr = trainsString.split('blank">').slice(1);
-// console.log("na=", newAr);
-// for (let i = 0; i < newAr.length; i++) {
-//   let secAr = [];
-//   let thAr = [];
-//   for (let j = 0; j !== "<"; j++) {
-//     thAr.push(newAr[i][j]);
-//   }
-//   secAr.push(thAr);
-//   console.log("secAr=", secAr);
-// }
-
-// console.log("tpt=", this.props.trains);
-// if (this.props.trains) {
-//   const x = document
-//     .getElementsByTagName("table")
-//     .item(0)
-//     .textContent.trim()
-//     .split("\n ");
-//   x.forEach(place =>
-//     console.log(
-//       `<a href="https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=${place
-//         .trim()
-//         .slice(0, 3)}" target="_blank">${place}</a> <br>`
-//     )
-//   );
-// }
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
