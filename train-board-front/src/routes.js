@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import AmtrakStationSearch from "./containers/AmtrakStationSearch";
 import AmtrakStationSelect from "./containers/AmtrakStationSelect";
 import NewTrainForm from "./containers/NewTrainForm";
-import UserTrains from "./containers/UserTrains";
+import ViewUserTrains from "./containers/ViewUserTrains";
 
 export default (
   <Router>
@@ -20,7 +20,7 @@ export default (
         <Route path="/search_amtrak_station" component={AmtrakStationSearch} />
         <Route path="/select_amtrak_station" component={AmtrakStationSelect} />
         <Route path="/new_user_train" component={NewTrainForm} />
-        <Route path="/view_user_trains" component={UserTrains} />
+        <Route path="/view_user_trains" component={ViewUserTrains} />
       </Switch>
     </div>
   </Router>
