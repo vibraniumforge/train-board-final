@@ -43,32 +43,27 @@ export default function userTrainsReducer(state = initialState, action) {
         train => train.id !== action.payload.data.data.id
       );
       return { ...state, userTrains };
+    case "GET_TRAIN_BY_ID":
+      return { ...state, trainToUpdate: action.payload.data };
     case "UPDATE_TRAIN":
       const updatedTrain = {
-        id: action.payload.data.data.id
-        // 9 more
+        id: action.payload.id,
+        destination: action.payload.destination,
+        origin: action.payload.origin,
+        remarks_boarding: action.payload.remarks_boarding,
+        scheduled: action.payload.scheduled,
+        scheduled24: action.payload.scheduled24,
+        newtime: action.payload.newtime,
+        newtime24: action.payload.newtime24,
+        service: action.payload.service,
+        trainno: action.payload.trainno
       };
       return {
         ...state,
-        trainToUpdate: state.trainToUpdate.map(train =>
-          train.id === action.payload.data.data.id
-            ? (train = updatedTrain)
-            : train
+        userTrains: state.userTrains.map(train =>
+          train.id === action.payload.id ? (train = updatedTrain) : train
         )
       };
-    // case "UPDATE_TRAIN":
-    //   const updatedTrain = {
-    //     id: action.train.id,
-    //     9 more
-    //   };
-    //   return {
-    //     ...state,
-    //     userTrains: state.trains.map(train =>
-    //       train.id === action.train.id
-    //         ? (train = updatedTrain)
-    //         : train
-    //     )
-    //   };
     default:
       return state;
   }
