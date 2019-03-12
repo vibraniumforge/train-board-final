@@ -2,7 +2,6 @@ import axios from "axios";
 const url = "http://localhost:3001/api/v1";
 
 export const getUserTrains = () => {
-  console.log("getUserTrains in userTrainActions fires");
   let data = {
     method: "GET",
     cache: "no-cache",
@@ -21,13 +20,40 @@ export const getUserTrains = () => {
   };
 };
 
+export const getTrainById = id => {
+  console.log("getTrainById in userTrainActions fires, id=", id);
+  let data = {
+    method: "GET",
+    cache: "no-cache",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      mode: "no-cors",
+      cache: "no-cache"
+    }
+  };
+  return dispatch => {
+    fetch(`${url}/trains/${id}`, data)
+      // .then(res => console.log(res))
+      .then(res => res.json())
+      .then(train =>
+        dispatch({
+          type: "GET_TRAIN_BY_ID",
+          payload: train
+        })
+      )
+      .catch(err => console.log("Error in getTrainById=", err));
+  };
+};
+
 export const createTrain = train => {
-  console.log("createTrain in userTrainActions fires");
   let data = {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      mode: "no-cors",
+      cache: "no-cache"
     },
     body: JSON.stringify({ train })
   };
@@ -57,7 +83,7 @@ export const createTrain = train => {
 export const updateTrain = id => {
   console.log("updateTrain in userTrainActions fires");
   let data = {
-    method: "GET",
+    method: "PATCH",
     cache: "no-cache",
     headers: {
       Accept: "application/json",
@@ -67,20 +93,13 @@ export const updateTrain = id => {
     }
   };
   return dispatch => {
-    fetch(`${url}/trains/${id}`, data)
+    fetch(`${url}/trains/${id}/edit`, data)
       .then(res => {
         if (res.ok) {
           res.json().then(train =>
             dispatch({
               type: "UPDATE_TRAIN",
               payload: train
-            })
-          );
-        } else {
-          res.json().then(errors =>
-            dispatch({
-              type: "TRAIN_ERRORS",
-              payload: errors
             })
           );
         }
