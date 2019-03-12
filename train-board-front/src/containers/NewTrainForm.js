@@ -77,7 +77,7 @@ class TrainForm extends Component {
               type="text"
               id="new-time-24"
               name="newtime24"
-              placeholder="New Time - if late. Format HHMM with 24 h"
+              placeholder="New Time HHMM 24h if late."
               value={this.state.newtime24}
               onChange={this.handleChange}
             />
@@ -150,24 +150,9 @@ class TrainForm extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   trains: state.userTrains.trainToUpdate
-// });
-
-// const mapDispatchToProps = dispatch =>
-//   bindActionCreators(
-//     {
-//       createTrain
-//     },
-//     dispatch
-//   );
-
-// export default withRouter(
-//   connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-//   )(TrainForm)
-// );
+const mapStateToProps = state => ({
+  trains: state.userTrains.trainToUpdate
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
@@ -179,7 +164,24 @@ const mapDispatchToProps = dispatch =>
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(TrainForm)
 );
+
+// old one
+
+// const mapDispatchToProps = dispatch =>
+//   bindActionCreators(
+//     {
+//       createTrain
+//     },
+//     dispatch
+//   );
+
+// export default withRouter(
+//   connect(
+//     null,
+//     mapDispatchToProps
+//   )(TrainForm)
+// );
