@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { createTrain } from "../actions/userTrainActions";
 import Errors from "../components/Errors";
 import Sample from "../components/Sample";
+import EditTrainForm from "../components/EditTrainForm";
 
 class TrainForm extends Component {
   constructor(props) {
@@ -30,7 +31,8 @@ class TrainForm extends Component {
   handleSubmit = e => {
     console.log("trainform onSubmit fires");
     e.preventDefault();
-    this.props.createTrain(this.state.train);
+    const newTrain = this.state;
+    this.props.createTrain(newTrain);
     this.props.history.push("/view_user_trains");
     this.clearForm();
   };
@@ -50,7 +52,6 @@ class TrainForm extends Component {
   };
 
   render() {
-    console.log("t.p.ttu=", this.props.trainToUpdate);
     return (
       <React.Fragment>
         <form id="new-train" className="center">
@@ -140,11 +141,33 @@ class TrainForm extends Component {
           </button>
         </form>
         {/* <Errors errors={this.props.trainErrors} /> */}
+        {this.props.trains ? (
+          <EditTrainForm trainToUpdate={this.props.trains} />
+        ) : null}
         <Sample />
       </React.Fragment>
     );
   }
 }
+
+// const mapStateToProps = state => ({
+//   trains: state.userTrains.trainToUpdate
+// });
+
+// const mapDispatchToProps = dispatch =>
+//   bindActionCreators(
+//     {
+//       createTrain
+//     },
+//     dispatch
+//   );
+
+// export default withRouter(
+//   connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+//   )(TrainForm)
+// );
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
