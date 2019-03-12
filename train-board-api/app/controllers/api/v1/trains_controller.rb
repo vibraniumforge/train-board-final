@@ -5,11 +5,11 @@ class TrainsController < ApplicationController
   
     def index
       @trains = Train.all
-      render json: {data: @trains, message: "Train successfully returned.", success: true}, status: 200
+      render json: {data: @trains, message: "Trains successfully returned.", success: true}, status: 200
     end
   
     def show
-      render json: @train
+      render json: {data: @train, message: "Train successfully returned.", success: true}, status: 200
     end
   
     def new
@@ -25,10 +25,12 @@ class TrainsController < ApplicationController
     end
   
     def edit
+      binding.pry
       render json: @train
     end
   
     def update
+      binding.pry
       @train.update(train_params)
       if @train.save
         render json: {data: @train, message: "Train successfully created.", success: true}, status: 200
