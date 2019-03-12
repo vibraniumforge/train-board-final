@@ -28,7 +28,6 @@ class Board extends Component {
     return (
       <React.Fragment>
         <div>
-          <h3 className="center" />
           <table>
             <thead>
               <tr>
@@ -44,7 +43,6 @@ class Board extends Component {
                 <th colSpan="7" />
               </tr>
             </thead>
-
             <tbody id="train-board">{trainsInfo}</tbody>
           </table>
         </div>
