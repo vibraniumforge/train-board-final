@@ -14,5 +14,5 @@ trains = Train.create([
     {destination: "Beijing", newtime:"", newtime24:"", origin: "Moscow", remarks_boarding: "On Time", scheduled: "0500", scheduled24: "1700", service: "Trans-Siberian Railway", trainno: "9"},
     {destination: "Darwin", newtime:"", newtime24:"", origin: "Adelaide - Parklands Terminal", remarks_boarding: "On Time", scheduled: "0600", scheduled24: "1800", service: "The Ghan", trainno: "11"},
     {destination: "Istanbul - Sirkeci", newtime:"", newtime24:"", origin: "Paris - Gare de l' Est", remarks_boarding: "On Time", scheduled: "0700", scheduled24: "1900", service: "Orient Express", trainno: "13"},
-    {destination: "Toronto - Union Station", newtime:"", newtime24:"", origin: "Vancouver Pacific Central Station", remarks_boarding: "On Time", scheduled: "0800", scheduled24: "2000", service: "The Canadian", trainno: "15"},
+    {destination: "Toronto - Union Station", newtime:"", newtime24:"", origin: "Vancouver - Pacific Central Station", remarks_boarding: "On Time", scheduled: "0800", scheduled24: "2000", service: "The Canadian", trainno: "15"},
 ])
