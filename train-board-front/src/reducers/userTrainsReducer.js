@@ -1,5 +1,5 @@
 const initialState = {
-  userTrains: [],
+  userSavedTrains: [],
   trainPostResult: [],
   trainErrors: [],
   trainToUpdate: []
@@ -8,7 +8,7 @@ const initialState = {
 export default function userTrainsReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_USER_TRAINS":
-      return { ...state, userTrains: action.payload };
+      return { ...state, userSavedTrains: action.payload };
     case "CREATE_TRAIN":
       const newTrain = {
         destination: action.payload.data.destination,
@@ -39,10 +39,10 @@ export default function userTrainsReducer(state = initialState, action) {
       };
       return { ...state, trainErrors: [...state.trainErrors, errors] };
     case "DELETE_TRAIN":
-      const userTrains = state.userTrains.filter(
+      const userSavedTrains = state.userSavedTrains.filter(
         train => train.id !== action.payload.data.data.id
       );
-      return { ...state, userTrains };
+      return { ...state, userSavedTrains };
     case "GET_TRAIN_BY_ID":
       return { ...state, trainToUpdate: action.payload.data };
     case "UPDATE_TRAIN":
@@ -60,7 +60,7 @@ export default function userTrainsReducer(state = initialState, action) {
       };
       return {
         ...state,
-        userTrains: state.userTrains.map(train =>
+        userSavedTrains: state.userSavedTrains.map(train =>
           train.id === action.payload.id ? (train = updatedTrain) : train
         )
       };
