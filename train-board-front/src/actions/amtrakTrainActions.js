@@ -4,6 +4,7 @@ export const getAmtrakTrains = station => {
   console.log("getAmtrakTrains in amtrakTrainActions fires, station=", station);
   let data = {
     method: "GET",
+    mode: "no-cors",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -13,35 +14,34 @@ export const getAmtrakTrains = station => {
   return dispatch => {
     fetch(`${url}/amtrak-station/${station}`, data)
       .then(res => res.json())
-      // .then(res => console.log(res))
+      .then(res => console.log(res))
       .then(res =>
         dispatch({
           type: "GET_AMTRAK_TRAINS",
           payload: res.data.results[0].data
         })
       )
-      .catch(err => console.error("Error in fetch=", err));
+      .catch(err => console.error("Error in getAmtrakTrains=", err));
   };
 };
 
 export const getAmtrakStation = station => {
   let data = {
     method: "GET",
+    // mode: "no-cors",
+    credentials: "same-origin",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
-      mode: "no-cors"
+      "Content-Type": "application/json"
+      // mode: "no-cors"
     }
   };
   return dispatch => {
-    fetch(
-      `https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=${station}`,
-      data
-    )
+    fetch(`${url}/amtrak-station-search/${station}`, data)
       .then(res => res.text())
       // .then(res => console.log(res))
       .then(res => dispatch({ type: "GET_AMTRAK_STATION", payload: res }))
-      .catch(err => console.error("Error in fetch=", err));
+      .catch(err => console.error("Error in getAmtrakStation=", err));
   };
 };
 
