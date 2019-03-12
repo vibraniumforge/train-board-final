@@ -1,15 +1,15 @@
 module Api::V1
-class TrainsController < ApplicationController
+  class TrainsController < ApplicationController
 
     before_action :find_train, only: [:update, :show, :edit, :destroy]
   
     def index
       @trains = Train.all
-      render json: {data: @trains, message: "Trains successfully returned.", success: true}, status: 200
+      render json: { message: "Trains successfully returned.", success: true, data: @trains }, status: 200
     end
   
     def show
-      render json: {data: @train, message: "Train successfully returned.", success: true}, status: 200
+      render json: { message: "Train successfully returned.", success: true, data: @train }, status: 200
     end
   
     def new
@@ -18,9 +18,9 @@ class TrainsController < ApplicationController
     def create
       @train=Train.create(train_params)
       if @train.save
-        render json: {data: @train, message: "Train successfully created.", success: true}, status: 200
+        render json: { message: "Train successfully created.", success: true, data: @train }, status: 200
       else
-        render json: {data: @train.errors, message: "Train not successfully created.", success:false}, status: 406
+        render json: { message: "Train not successfully created.", success:false, data: @train.errors }, status: 406
       end
     end
   
@@ -33,9 +33,9 @@ class TrainsController < ApplicationController
       binding.pry
       @train.update(train_params)
       if @train.save
-        render json: {data: @train, message: "Train successfully created.", success: true}, status: 200
+        render json: { message: "Train successfully updated.", success: true, data: @train }, status: 200
       else
-        render json: {data: @train.errors, message: "Train not successfully created.", success:false}, status: 406
+        render json: { message: "Train not successfully updated.", success:false, data: @train.errors }, status: 406
       end
     end
   
@@ -43,9 +43,9 @@ class TrainsController < ApplicationController
       find_train 
       @train.destroy
       if @train.destroy
-        render json: {data: @train, message: "Train successfully deleted.", success: true}, status: 200
+        render json: { message: "Train successfully deleted.", success: true, data: @train }, status: 200
       else
-        render json: {data: @train.errors, message: "Train not successfully deleted.", success:false}, status: 406
+        render json: { message: "Train not successfully deleted.", success:false, data: @train.errors }, status: 406
       end
     end
 
@@ -54,20 +54,20 @@ class TrainsController < ApplicationController
       body = JSON.parse(response.body)
       if response.success? 
         @trains = body["response"]
-        render json: {data: @trains, message: "Amtrak info found", success: true}, status: 200
+        render json: {message: "Amtrak info found.", success: true, data: @trains}, status: 200
       else 
-        render json: {data: @train.errors, message: "Amtrak info not found.", success:false}, status: 406
+        render json: {message: "Amtrak info not found.", success:false, data: @train.errors }, status: 406
       end
     end
 
-    def amtrak_search
-      response = Faraday.get("http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=#{params[:id]}") 
-      body = JSON.parse(response.body)
-      if result.success? 
-        @trains = body["response"]
-        render json: {data: @trains, message: "Amtrak info found", success: true}, status: 200
+    def amtrak_station_search
+      response = Faraday.get("http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=#{params[:id]}&SubmitButton=Submit") 
+      # body = JSON.parse(response.body)
+      if response.success? 
+        @trains = response.body
+        render: {message: "Amtrak info found.", success: true, data: @trains }, status: 200
       else 
-        render json: {data: @train.errors, message: "Amtrak info not found.", success:false}, status: 406
+        render json: {message: "Amtrak info not found.", success:false, data: @train.errors }, status: 406
       end
     end
   
