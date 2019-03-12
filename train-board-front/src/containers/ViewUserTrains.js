@@ -14,9 +14,7 @@ class UserTrains extends Component {
   onSubmitTrains = e => {
     e.preventDefault();
     console.log("onSubmitTrains in UserTrains fires");
-    this.props.getUserTrains(() =>
-      this.props.history.push("/view_user_trains")
-    );
+    this.props.getUserTrains();
   };
 
   render() {
