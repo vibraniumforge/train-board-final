@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "http://localhost:3001/api/v1";
+const url = "http://localhost:3001/api/v1/trains";
 
 export const getUserTrains = () => {
   let data = {
@@ -13,7 +13,7 @@ export const getUserTrains = () => {
     }
   };
   return dispatch => {
-    fetch(`${url}/trains`, data)
+    fetch(`${url}`, data)
       .then(res => res.json())
       .then(res => dispatch({ type: "GET_USER_TRAINS", payload: res.data }))
       .catch(err => console.error("Error in getUserTrains=", err));
@@ -33,7 +33,7 @@ export const getTrainById = id => {
     }
   };
   return dispatch => {
-    fetch(`${url}/trains/${id}`, data)
+    fetch(`${url}/${id}`, data)
       .then(res => res.json())
       .then(train =>
         dispatch({
@@ -57,7 +57,7 @@ export const createTrain = train => {
     body: JSON.stringify({ train })
   };
   return dispatch => {
-    fetch(`${url}/trains`, data)
+    fetch(`${url}`, data)
       .then(res => {
         if (res.ok) {
           res.json().then(train =>
@@ -97,7 +97,7 @@ export const updateTrain = (id, updatedTrain) => {
     body: JSON.stringify({ updatedTrain })
   };
   return dispatch => {
-    fetch(`${url}/trains/${id}/edit`, data)
+    fetch(`${url}/${id}/edit`, data)
       .then(res => res.json())
       .then(train =>
         dispatch({
