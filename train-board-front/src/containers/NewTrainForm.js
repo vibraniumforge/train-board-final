@@ -30,8 +30,7 @@ class TrainForm extends Component {
   handleSubmit = e => {
     console.log("trainform onSubmit fires");
     e.preventDefault();
-    const train = this.state;
-    this.props.createTrain(train);
+    this.props.createTrain(this.state.train);
     this.props.history.push("/view_user_trains");
     this.clearForm();
   };
@@ -51,6 +50,7 @@ class TrainForm extends Component {
   };
 
   render() {
+    console.log("t.p.ttu=", this.props.trainToUpdate);
     return (
       <React.Fragment>
         <form id="new-train" className="center">
@@ -139,7 +139,7 @@ class TrainForm extends Component {
             Clear
           </button>
         </form>
-        <Errors />
+        {/* <Errors errors={this.props.trainErrors} /> */}
         <Sample />
       </React.Fragment>
     );
