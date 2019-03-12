@@ -9,6 +9,8 @@ export default function userTrainsReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_USER_TRAINS":
       return { ...state, userSavedTrains: action.payload };
+    case "GET_TRAIN_BY_ID":
+      return { ...state, trainToUpdate: action.payload.data };
     case "CREATE_TRAIN":
       const newTrain = {
         destination: action.payload.data.destination,
@@ -43,8 +45,6 @@ export default function userTrainsReducer(state = initialState, action) {
         train => train.id !== action.payload.data.data.id
       );
       return { ...state, userSavedTrains };
-    case "GET_TRAIN_BY_ID":
-      return { ...state, trainToUpdate: action.payload.data };
     case "UPDATE_TRAIN":
       const updatedTrain = {
         id: action.payload.id,
