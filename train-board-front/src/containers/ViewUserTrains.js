@@ -13,7 +13,7 @@ class UserTrains extends Component {
 
   onSubmitTrains = e => {
     e.preventDefault();
-    console.log("onSubmitTrains in UserTrains fires");
+    console.log("onSubmitTrains in ViewUserTrains fires");
     this.props.getUserTrains();
   };
 
