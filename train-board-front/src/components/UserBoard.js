@@ -8,9 +8,9 @@ import { nameHelper } from "../helpers/nameHelper";
 import { remarksHelper } from "../helpers/remarksHelper";
 import { timeHelper } from "../helpers/timeHelper";
 import {
+  getTrainById,
   updateTrain,
-  deleteTrain,
-  getTrainById
+  deleteTrain
 } from "../actions/userTrainActions";
 
 class UserBoard extends Component {
@@ -24,7 +24,7 @@ class UserBoard extends Component {
     e.preventDefault();
     console.log("onUpdateTrain in UserBoard fires");
     this.props.getTrainById(e.target.dataset.id);
-    // this.props.history.push("new_user_train");
+    this.props.history.push("new_user_train");
   };
 
   render() {
