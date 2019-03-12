@@ -34,7 +34,6 @@ export const getTrainById = id => {
   };
   return dispatch => {
     fetch(`${url}/trains/${id}`, data)
-      // .then(res => console.log(res))
       .then(res => res.json())
       .then(train =>
         dispatch({
