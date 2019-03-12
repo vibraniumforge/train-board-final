@@ -7,7 +7,11 @@ import { withRouter } from "react-router-dom";
 import { nameHelper } from "../helpers/nameHelper";
 import { remarksHelper } from "../helpers/remarksHelper";
 import { timeHelper } from "../helpers/timeHelper";
-import { updateTrain, deleteTrain } from "../actions/userTrainActions";
+import {
+  updateTrain,
+  deleteTrain,
+  getTrainById
+} from "../actions/userTrainActions";
 
 class UserBoard extends Component {
   onDeleteTrain = e => {
@@ -19,7 +23,8 @@ class UserBoard extends Component {
   onUpdateTrain = e => {
     e.preventDefault();
     console.log("onUpdateTrain in UserBoard fires");
-    this.props.updateTrain(e.target.dataset.id);
+    this.props.getTrainById(e.target.dataset.id);
+    // this.props.history.push("new_user_train");
   };
 
   render() {
@@ -40,7 +45,11 @@ class UserBoard extends Component {
               {train.remarks_boarding}
             </td>
             <td>
-              <button type="button" onClick={this.onUpdateTrain}>
+              <button
+                type="button"
+                data-id={train.id}
+                onClick={e => this.onUpdateTrain(e)}
+              >
                 Update
               </button>
             </td>
@@ -86,7 +95,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       updateTrain,
-      deleteTrain
+      deleteTrain,
+      getTrainById
     },
     dispatch
   );
