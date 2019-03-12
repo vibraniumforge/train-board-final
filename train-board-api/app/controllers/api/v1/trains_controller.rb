@@ -65,7 +65,7 @@ module Api::V1
       # body = JSON.parse(response.body)
       if response.success? 
         @trains = response.body
-        render: {message: "Amtrak info found.", success: true, data: @trains }, status: 200
+        render json: {message: "Amtrak info found.", success: true, data: @trains }, status: 200
       else 
         render json: {message: "Amtrak info not found.", success:false, data: @train.errors }, status: 406
       end
