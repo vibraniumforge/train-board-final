@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { createTrain } from "../actions/userTrainActions";
-import Errors from "../components/Errors";
+// import Errors from "../components/Errors";
 import Sample from "../components/Sample";
 import EditTrainForm from "../components/EditTrainForm";
 
