@@ -4,7 +4,8 @@ export const getAmtrakTrains = station => {
   console.log("getAmtrakTrains in amtrakTrainActions fires, station=", station);
   let data = {
     method: "GET",
-    mode: "no-cors",
+    // mode: "no-cors",
+    // cache: "no-cache",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -14,7 +15,7 @@ export const getAmtrakTrains = station => {
   return dispatch => {
     fetch(`${url}/amtrak-station/${station}`, data)
       .then(res => res.json())
-      .then(res => console.log(res))
+      // .then(res => console.log("res=", res))
       .then(res =>
         dispatch({
           type: "GET_AMTRAK_TRAINS",
@@ -28,20 +29,20 @@ export const getAmtrakTrains = station => {
 export const getAmtrakStation = station => {
   let data = {
     method: "GET",
-    // mode: "no-cors",
-    credentials: "same-origin",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json"
-      // mode: "no-cors"
+      "Content-Type": "application/json",
+      mode: "no-cors",
+      cache: "no-cache",
+      credentials: "same-origin"
     }
   };
   return dispatch => {
     fetch(`${url}/amtrak-station-search/${station}`, data)
       .then(res => res.text())
-      // .then(res => console.log(res))
+      .then(res => console.log("res=", res))
       .then(res => dispatch({ type: "GET_AMTRAK_STATION", payload: res }))
-      .catch(err => console.error("Error in getAmtrakStation=", err));
+      .catch(err => console.log("Error in getAmtrakStation=", err));
   };
 };
 
