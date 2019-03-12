@@ -3,22 +3,48 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { createTrain } from "../actions/userTrainActions";
+import { updateTrain } from "../actions/userTrainActions";
 
 class TrainForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      destination: this.props.trainToUpdate.destination || "",
-      newtime: this.props.trainToUpdate.destnewtimeination || "",
-      newtime24: this.props.trainToUpdate.newtime24 || "",
-      origin: this.props.trainToUpdate.origin || "",
-      remarks_boarding: this.props.trainToUpdate.remarks_boarding || "",
-      scheduled: this.props.trainToUpdate.scheduled || "",
-      scheduled24: this.props.trainToUpdate.scheduled24 || "",
-      service: this.props.trainToUpdate.service || "",
-      trainno: this.props.trainToUpdate.trainno || ""
+      destination: "",
+      newtime: "",
+      newtime24: "",
+      origin: "",
+      remarks_boarding: "",
+      scheduled: "",
+      scheduled24: "",
+      service: "",
+      trainno: ""
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log("cDU fires in EditTrainForm.js");
+    console.log("this.props.trainToUpdate=", this.props.trainToUpdate);
+    console.log("prevProps.trainToUpdate=", prevProps.trainToUpdate);
+    if (
+      this.props.trainToUpdate &&
+      this.props.trainToUpdate.length !== prevProps.trainToUpdate.length
+    ) {
+      console.log("logic in cDU fires");
+      this.setState(
+        {
+          destination: this.props.trainToUpdate.destination,
+          newtime: this.props.trainToUpdate.newtime,
+          newtime24: this.props.trainToUpdate.newtime24,
+          origin: this.props.trainToUpdate.origin,
+          remarks_boarding: this.props.trainToUpdate.remarks_boarding,
+          scheduled: this.props.trainToUpdate.scheduled,
+          scheduled24: this.props.trainToUpdate.scheduled24,
+          service: this.props.trainToUpdate.service,
+          trainno: this.props.trainToUpdate.trainno
+        },
+        () => console.log("this.state=", this.state)
+      );
+    }
   }
 
   handleChange = e => {
@@ -28,7 +54,8 @@ class TrainForm extends Component {
   handleSubmit = e => {
     console.log("trainform onSubmit fires");
     e.preventDefault();
-    this.props.createTrain(this.state.train);
+    const updatedTrain = this.state;
+    this.props.updateTrain(this.props.trainToUpdate.id, updatedTrain);
     this.props.history.push("/view_user_trains");
     this.clearForm();
   };
@@ -48,7 +75,7 @@ class TrainForm extends Component {
   };
 
   render() {
-    console.log(this.props.trainToUpdate);
+    console.log("this.props.trainToUpdate=", this.props.trainToUpdate);
     return (
       <React.Fragment>
         <form id="new-train" className="center">
@@ -74,7 +101,7 @@ class TrainForm extends Component {
               type="text"
               id="new-time-24"
               name="newtime24"
-              placeholder="New Time - if late. Format HHMM with 24 h"
+              placeholder="New Time HHMM 24h if late."
               value={this.state.newtime24}
               onChange={this.handleChange}
             />
@@ -145,7 +172,7 @@ class TrainForm extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      createTrain
+      updateTrain
     },
     dispatch
   );
