@@ -79,64 +79,47 @@ export const createTrain = train => {
   };
 };
 
-export const updateTrain = id => {
-  console.log("updateTrain in userTrainActions fires");
+export const updateTrain = (id, updatedTrain) => {
+  console.log(
+    "updateTrain in userTrainActions fires, id=",
+    id,
+    "updatedTrain=",
+    updatedTrain
+  );
   let data = {
     method: "PATCH",
-    cache: "no-cache",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       mode: "no-cors",
       cache: "no-cache"
-    }
+    },
+    body: JSON.stringify({ updatedTrain })
   };
   return dispatch => {
     fetch(`${url}/trains/${id}/edit`, data)
-      .then(res => {
-        if (res.ok) {
-          res.json().then(train =>
-            dispatch({
-              type: "UPDATE_TRAIN",
-              payload: train
-            })
-          );
-        }
-      })
+      .then(res => res.json())
+      .then(train =>
+        dispatch({
+          type: "UPDATE_TRAIN",
+          payload: train
+        })
+      )
       .catch(err => console.log("Error in updateTrain=", err));
   };
 };
 
-// export const updateTrain = id => {
+// export const updateTrain = (id, updatedTrain) => {
 //   console.log("updateTrain in userTrainActions fires");
-//   let data = {
-//     method: "PATCH",
-//     mode: "no-cors",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({ id })
-//   };
 //   return dispatch => {
-//     fetch(`${url}/trains/${id}/edit`, data)
-//       .then(res => {
-//         if (res.ok) {
-//           res.json().then(train =>
-//             dispatch({
-//               type: "UPDATE_TRAIN",
-//               payload: train
-//             })
-//           );
-//         } else {
-//           res.json().then(errors =>
-//             dispatch({
-//               type: "TRAIN_ERRORS",
-//               payload: errors
-//             })
-//           );
-//         }
-//       })
+//     axios
+//       .patch(`http://localhost:3001/api/v1/trains/${id}`)
+//       .then(res =>
+//         dispatch({
+//           type: "UPDATE_TRAIN",
+//           payload: res
+//         })
+//       )
 //       .catch(err => console.log("Error in updateTrain=", err));
 //   };
 // };
