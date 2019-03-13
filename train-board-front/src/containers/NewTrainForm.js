@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { createTrain } from "../actions/userTrainActions";
-// import Errors from "../components/Errors";
+import Errors from "../components/Errors";
 import Sample from "../components/Sample";
 import EditTrainForm from "../components/EditTrainForm";
 
@@ -33,8 +33,10 @@ class TrainForm extends Component {
     e.preventDefault();
     const newTrain = this.state;
     this.props.createTrain(newTrain);
-    this.props.history.push("/view_user_trains");
-    this.clearForm();
+    if (!this.props.trainErrors) {
+      // this.props.history.push("/view_user_trains");
+      this.clearForm();
+    }
   };
 
   clearForm = () => {
@@ -140,10 +142,8 @@ class TrainForm extends Component {
             Clear
           </button>
         </form>
-        {/* <Errors errors={this.props.trainErrors} /> */}
-        {this.props.trains ? (
-          <EditTrainForm trainToUpdate={this.props.trains} />
-        ) : null}
+        <Errors trainErrors={this.props.trainErrors} />
+        <EditTrainForm trainToUpdate={this.props.trainToUpdate} />
         <Sample />
       </React.Fragment>
     );
@@ -151,7 +151,8 @@ class TrainForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  trains: state.userTrains.trainToUpdate
+  trainToUpdate: state.userTrains.trainToUpdate,
+  trainErrors: state.userTrains.trainErrors
 });
 
 const mapDispatchToProps = dispatch =>
