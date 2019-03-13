@@ -21,6 +21,7 @@ class AmtrakStationSearch extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.getAmtrakStation(this.state.stationSearchInput);
+    this.setState({ stationSearchInput: "" });
   };
 
   render() {
