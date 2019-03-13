@@ -3,15 +3,6 @@ module Api::V1
 
     before_action :find_train, only: [:update, :show, :edit, :destroy]
   
-    def index
-      @trains = Train.all
-      render json: { message: "Trains successfully returned.", success: true, data: @trains }, status: 200
-    end
-  
-    def show
-      render json: { message: "Train successfully returned.", success: true, data: @train }, status: 200
-    end
-  
     def new
     end
   
@@ -23,14 +14,12 @@ module Api::V1
         render json: { message: "Train not successfully created.", success:false, data: @train.errors }, status: 406
       end
     end
-  
+
     def edit
-      binding.pry
-      render json: @train
+      
     end
   
     def update
-      binding.pry
       @train.update(train_params)
       if @train.save
         render json: { message: "Train successfully updated.", success: true, data: @train }, status: 200
@@ -38,10 +27,18 @@ module Api::V1
         render json: { message: "Train not successfully updated.", success:false, data: @train.errors }, status: 406
       end
     end
+
+    def index
+      @trains = Train.all
+      render json: { message: "Trains successfully returned.", success: true, data: @trains }, status: 200
+    end
+  
+    def show
+      render json: { message: "Train successfully returned.", success: true, data: @train }, status: 200
+    end
   
     def destroy
       find_train 
-      @train.destroy
       if @train.destroy
         render json: { message: "Train successfully deleted.", success: true, data: @train }, status: 200
       else
@@ -61,12 +58,12 @@ module Api::V1
     end
 
     def amtrak_station_search
-      response = Faraday.get("http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=#{params[:id]}&SubmitButton=Submit") 
-      # @stations = JSON.parse(response.body)
+      response = Faraday.get("http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=#{params[:id]}") 
+      puts response
       if response.success? 
         @stations = response.body
-        binding.pry
-        render html: {message: "Amtrak info found.", success: true, data: @stations }, status: 200
+        # render json: {message: "Amtrak info found.", success: true, data: @stations }, status: 200
+        render plain: @stations
       else 
         render json: {message: "Amtrak info not found.", success:false, data: @stations.errors }, status: 406
       end
