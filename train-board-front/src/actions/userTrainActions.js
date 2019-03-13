@@ -1,10 +1,8 @@
-import axios from "axios";
 const url = "http://localhost:3001/api/v1/trains";
 
 export const getUserTrains = () => {
   let data = {
     method: "GET",
-    cache: "no-cache",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -24,7 +22,6 @@ export const getTrainById = id => {
   console.log("getTrainById in userTrainActions fires, id=", id);
   let data = {
     method: "GET",
-    cache: "no-cache",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -94,12 +91,12 @@ export const createTrain = train => {
 //       payload: err
 //     }));
 
-export const updateTrain = (id, updatedTrain) => {
+export const updateTrain = (id, train) => {
   console.log(
     "updateTrain in userTrainActions fires, id=",
     id,
     "updatedTrain=",
-    updatedTrain
+    train
   );
   let data = {
     method: "PATCH",
@@ -109,10 +106,10 @@ export const updateTrain = (id, updatedTrain) => {
       mode: "no-cors",
       cache: "no-cache"
     },
-    body: JSON.stringify({ updatedTrain })
+    body: JSON.stringify({ train })
   };
   return dispatch => {
-    fetch(`${url}/${id}/edit`, data)
+    fetch(`${url}/${id}`, data)
       .then(res => res.json())
       .then(train =>
         dispatch({
@@ -123,6 +120,32 @@ export const updateTrain = (id, updatedTrain) => {
       .catch(err => console.log("Error in updateTrain=", err));
   };
 };
+
+export const deleteTrain = id => {
+  console.log("deleteTrain in userTrainActions fires");
+  let data = {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      // "Content-Type": "application/json",
+      mode: "no-cors",
+      cache: "no-cache"
+    }
+  };
+  return dispatch => {
+    fetch(`${url}/${id}`, data)
+      .then(res => res.json())
+      .then(train =>
+        dispatch({
+          type: "DELETE_TRAIN",
+          payload: train
+        })
+      )
+      .catch(err => console.log("Error in deleteTrain=", err));
+  };
+};
+
+// update with axios
 
 // export const updateTrain = (id, updatedTrain) => {
 //   console.log("updateTrain in userTrainActions fires");
@@ -139,42 +162,19 @@ export const updateTrain = (id, updatedTrain) => {
 //   };
 // };
 
-// export const deleteTrain = id => {
+// del with axios
+
+// export const deleteTrain = train => {
 //   console.log("deleteTrain in userTrainActions fires");
-//   let data = {
-//     method: "DELETE",
-//     mode: "no-cors",
-//     headers: {
-//       Accept: "application/json",
-//       // "Content-Type": "application/json",
-//       mode: "no-cors",
-//       cache: "no-cache"
-//     }
-//   };
 //   return dispatch => {
-//     fetch(`${url}/trains/${id}`, data)
-//       .then(res => res.json())
-//       .then(train =>
+//     axios
+//       .delete(`http://localhost:3001/api/v1/trains/${train}`)
+//       .then(res =>
 //         dispatch({
 //           type: "DELETE_TRAIN",
-//           payload: train
+//           payload: res
 //         })
 //       )
 //       .catch(err => console.log("Error in deleteTrain=", err));
 //   };
 // };
-
-export const deleteTrain = train => {
-  console.log("deleteTrain in userTrainActions fires");
-  return dispatch => {
-    axios
-      .delete(`http://localhost:3001/api/v1/trains/${train}`)
-      .then(res =>
-        dispatch({
-          type: "DELETE_TRAIN",
-          payload: res
-        })
-      )
-      .catch(err => console.log("Error in deleteTrain=", err));
-  };
-};
