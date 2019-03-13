@@ -34,6 +34,7 @@ class StationResult extends Component {
   sendStationRequest = e => {
     this.props.getAmtrakTrains(e.target.dataset.stationcode);
     this.props.history.push("/select_amtrak_station");
+    this.setState({ placeAr: "" });
   };
 
   fixAr() {
@@ -71,13 +72,13 @@ class StationResult extends Component {
       ));
     return (
       <React.Fragment>
-        <div
-          id="search-result"
-          dangerouslySetInnerHTML={{ __html: this.props.trains }}
-        />
         <div>
           <ul>{places}</ul>
         </div>
+        {/* <div
+          id="search-result"
+          dangerouslySetInnerHTML={{ __html: this.props.trains }}
+        /> */}
       </React.Fragment>
     );
   }
