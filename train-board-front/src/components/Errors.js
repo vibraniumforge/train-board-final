@@ -16,6 +16,32 @@ class Errors extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    console.log("cDU fires in Errors.js");
+    console.log("this.props.trainErrors=", this.props.trainErrors);
+    console.log("prevProps.trainErrors=", prevProps.trainErrors);
+    if (
+      this.props.trainErrors &&
+      this.props.trainErrors.length !== prevProps.trainErrors.length
+    ) {
+      console.log("logic in Errors.js cDU fires");
+      this.setState(
+        {
+          destination: this.props.trainErrors[0].destination,
+          newtime: this.props.trainErrors[0].newtime,
+          newtime24: this.props.trainErrors[0].newtime24,
+          origin: this.props.trainErrors[0].origin,
+          remarks_boarding: this.props.trainErrors[0].remarks_boarding,
+          scheduled: this.props.trainErrors[0].scheduled,
+          scheduled24: this.props.trainErrors[0].scheduled24,
+          service: this.props.trainErrors[0].service,
+          trainno: this.props.trainErrors[0].trainno
+        },
+        () => console.log("this.state=", this.state)
+      );
+    }
+  }
+
   clearForm = () => {
     this.setState({
       destination: "",
@@ -30,30 +56,37 @@ class Errors extends Component {
     });
   };
 
+  handleChange = e => {};
+
   render() {
     console.log("this.props.trainErrors=", this.props.trainErrors);
-    const errors =
-      this.props.trainErrors &&
-      this.props.trainErrors.map((error, index) => {
-        return this.props.trainErrors ? (
-          <ul key={index}>
-            <li>{error.trainno}</li>
-            <li>{error.service}</li>
-            <li>{error.destination}</li>
-            <li>{error.scheduled}</li>
-            <li>{error.scheduled24}</li>
-            <li>{error.newtime}</li>
-            <li>{error.newtime24}</li>
-            <li>{error.origin}</li>
-            <li>{error.remarks_boarding}</li>
-          </ul>
-        ) : null;
-      });
+    // const errors =
+    // this.props.trainErrors &&
+    //   this.props.trainErrors.map((error, index) => {
+    //     return this.props.trainErrors ? (
+    //       <React.Fragment>
+    //         <ul key={index}>
+    //           <li>{error.trainno}</li>
+    //           <li>{error.service}</li>
+    //           <li>{error.destination}</li>
+    //           <li>{error.scheduled}</li>
+    //           <li>{error.scheduled24}</li>
+    //           <li>{error.newtime}</li>
+    //           <li>{error.newtime24}</li>
+    //           <li>{error.origin}</li>
+    //           <li>{error.remarks_boarding}</li>
+    //         </ul>
+    //         <br />
+    //       </React.Fragment>
+    //     ) : null;
+    //   });
     return (
       <React.Fragment>
         <form id="new-train" className="center">
           <h4>Errors</h4>
-          <div id="response">{errors} </div>
+          {/* <div id="response">
+            <ul>{errors}</ul>{" "}
+          </div> */}
           <div>
             <input
               className="red"
@@ -61,7 +94,7 @@ class Errors extends Component {
               id="train-destination"
               name="destination"
               placeholder="Destination"
-              value={this.props.trainErrors}
+              value={this.state.destination}
               onChange={this.handleChange}
               disabled
             />
