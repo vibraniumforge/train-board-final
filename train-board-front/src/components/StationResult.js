@@ -72,13 +72,11 @@ class StationResult extends Component {
       ));
     return (
       <React.Fragment>
-        <div>
-          <ul>{places}</ul>
+        {/* <div dangerouslySetInnerHTML={{ __html: this.props.trains }}>
+        </div> */}
+        <div id="station-buttons" className="center">
+          <ul className="center">{places}</ul>
         </div>
-        {/* <div
-          id="search-result"
-          dangerouslySetInnerHTML={{ __html: this.props.trains }}
-        /> */}
       </React.Fragment>
     );
   }
