@@ -14,6 +14,13 @@ import {
 } from "../actions/userTrainActions";
 
 class UserBoard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      likes: 0
+    };
+  }
+
   onDeleteTrain = e => {
     e.preventDefault();
     console.log("onDeleteTrain in UserBoard fires");
@@ -27,11 +34,20 @@ class UserBoard extends Component {
     this.props.history.push("new_user_train");
   };
 
+  handleChange;
+  incrementLikes = e => {
+    e.preventDefault();
+    const currentLikes = this.state.likes;
+    // dataset;
+    this.setState({ likes: currentLikes + 1 });
+  };
+
   render() {
     const trainsInfo =
       this.props.userTrains &&
       this.props.userTrains.map(train => {
         return train.trainno.trim() ? (
+          // <OneTrain likes={this.state.likes}/>
           <tr key={train.id}>
             <td>{train.trainno}</td>
             <td>{nameHelper(train.service)}</td>
@@ -60,6 +76,16 @@ class UserBoard extends Component {
                 onClick={e => this.onDeleteTrain(e)}
               >
                 Delete
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                onClick={e => this.incrementLikes(e)}
+                data-id={train.id}
+                value={this.state.likes}
+              >
+                {this.props.likes}
               </button>
             </td>
           </tr>
