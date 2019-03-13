@@ -71,6 +71,10 @@ class StationResult extends Component {
       ));
     return (
       <React.Fragment>
+        <div
+          id="search-result"
+          dangerouslySetInnerHTML={{ __html: this.props.trains }}
+        />
         <div>
           <ul>{places}</ul>
         </div>
