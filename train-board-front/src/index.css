@@ -16,7 +16,6 @@ code {
 #navbar {
   background-color: navy;
   height: 40px;
-  /* float: left; */
   text-align: center;
   padding: 10px;
   text-decoration: none;
@@ -33,7 +32,6 @@ li {
 }
 
 li a {
-  /* display: block; */
   text-align: center;
   margin: 10px;
   color: red;
@@ -54,7 +52,7 @@ li a:hover {
 }
 
 table {
-  width: 95%;
+  width: 100%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -75,15 +73,10 @@ p {
 .center {
   padding: 10px;
   text-align: center;
+  float: center;
 }
 
-#search-result {
-  padding: 10px;
-  text-align: center;
-  color: red;
-  background-color: white;
-}
-
-.hidden {
-  display: none;
+#station-buttons {
+  display: flex;
+  justify-content: center;
 }
