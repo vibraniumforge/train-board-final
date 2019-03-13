@@ -4,8 +4,10 @@ import { nameHelper } from "../helpers/nameHelper";
 import { remarksHelper } from "../helpers/remarksHelper";
 import { timeHelper } from "../helpers/timeHelper";
 
-class Board extends Component {
+class AmtrakBoard extends Component {
   render() {
+    console.log("tpat=", this.props.amtrakTrains);
+
     const trainsInfo =
       this.props.amtrakTrains &&
       this.props.amtrakTrains.map((train, index) => {
@@ -25,6 +27,7 @@ class Board extends Component {
           </tr>
         ) : null;
       });
+    console.log(trainsInfo);
     return (
       <React.Fragment>
         <div>
@@ -51,4 +54,4 @@ class Board extends Component {
   }
 }
 
-export default Board;
+export default AmtrakBoard;
