@@ -60,12 +60,12 @@ export const createTrain = train => {
     fetch(`${url}`, data)
       .then(res => {
         if (res.ok) {
-          res.json().then(train =>
+          res.json().then(train => {
             dispatch({
               type: "CREATE_TRAIN",
               payload: train
-            })
-          );
+            });
+          });
         } else {
           res.json().then(errors =>
             dispatch({
@@ -78,6 +78,21 @@ export const createTrain = train => {
       .catch(err => console.log("Error in createTrain=", err));
   };
 };
+
+// fetch(`${url}`, data) //axios.post(data)
+//     .then (res => {
+//       const resp = res.json()
+//       if (res.ok) {
+//         return resp
+//       }
+
+//       throw Error(resp)
+//     })
+//     .then(train =>dispatch({type: "CREATE_TRAIN",payload: train}))
+//     .catch(err => dispatch({
+//       type: "TRAIN_ERRORS",
+//       payload: err
+//     }));
 
 export const updateTrain = (id, updatedTrain) => {
   console.log(
