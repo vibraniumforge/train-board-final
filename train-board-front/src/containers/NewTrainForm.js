@@ -71,7 +71,7 @@ class TrainForm extends Component {
               type="text"
               id="new-time"
               name="newtime"
-              placeholder="New Time - if late. Format HHMM"
+              placeholder="New Time (if late). Format HHMM"
               value={this.state.newtime}
               onChange={this.handleChange}
             />
@@ -79,7 +79,7 @@ class TrainForm extends Component {
               type="text"
               id="new-time-24"
               name="newtime24"
-              placeholder="New Time HHMM 24h if late."
+              placeholder="New Time HHMM 24h (if late)."
               value={this.state.newtime24}
               onChange={this.handleChange}
             />
@@ -142,8 +142,9 @@ class TrainForm extends Component {
             Clear
           </button>
         </form>
-        <Errors trainErrors={this.props.trainErrors} />
         <EditTrainForm trainToUpdate={this.props.trainToUpdate} />
+        <Errors trainErrors={this.props.trainErrors} />
+
         <Sample />
       </React.Fragment>
     );
