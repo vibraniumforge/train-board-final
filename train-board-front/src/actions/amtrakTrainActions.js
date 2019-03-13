@@ -1,11 +1,8 @@
 const url = "http://localhost:3001/api/v1";
 
 export const getAmtrakTrains = station => {
-  console.log("getAmtrakTrains in amtrakTrainActions fires, station=", station);
   let data = {
     method: "GET",
-    // mode: "no-cors",
-    // cache: "no-cache",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -32,15 +29,13 @@ export const getAmtrakStation = station => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      mode: "no-cors",
-      cache: "no-cache",
-      credentials: "same-origin"
+      mode: "no-cors"
     }
   };
   return dispatch => {
     fetch(`${url}/amtrak-station-search/${station}`, data)
       .then(res => res.text())
-      .then(res => console.log("res=", res))
+      // .then(res => console.log("res=", res))
       .then(res => dispatch({ type: "GET_AMTRAK_STATION", payload: res }))
       .catch(err => console.log("Error in getAmtrakStation=", err));
   };
@@ -51,4 +46,4 @@ export const getAmtrakStation = station => {
 //   data
 // )
 
-// fetch(`http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=${station}, data)
+// fetch(`https://cors-anywhere.herokuapp.com/http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=${station}`, data)
