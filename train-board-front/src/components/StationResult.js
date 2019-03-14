@@ -65,6 +65,7 @@ class StationResult extends Component {
             type="button"
             onClick={this.sendStationRequest}
             data-stationcode={place.slice(0, 3)}
+            data-stationname={place.slice(4)}
           >
             {place}
           </button>
