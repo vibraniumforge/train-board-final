@@ -10,7 +10,8 @@ class AmtrakStationSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stationSearchInput: ""
+      stationSearchInput: "",
+      showBoard: false
     };
   }
 
@@ -21,7 +22,7 @@ class AmtrakStationSearch extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.getAmtrakStation(this.state.stationSearchInput);
-    this.setState({ stationSearchInput: "" });
+    this.setState({ stationSearchInput: "", showBoard: true });
   };
 
   render() {
@@ -42,7 +43,9 @@ class AmtrakStationSearch extends Component {
           </button>
         </div>
         <div id="search-result">
-          <StationResult trains={this.props.trains} />
+          <StationResult
+            amtrakStationSearchResult={this.props.amtrakStationSearchResult}
+          />
         </div>
       </React.Fragment>
     );
@@ -50,7 +53,7 @@ class AmtrakStationSearch extends Component {
 }
 
 const mapStateToProps = state => ({
-  trains: state.amtrakTrains.amtrakStationSearchResult
+  amtrakStationSearchResult: state.amtrakTrains.amtrakStationSearchResult
 });
 
 const mapDispatchToProps = dispatch =>
