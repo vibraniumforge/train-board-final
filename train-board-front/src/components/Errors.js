@@ -27,15 +27,15 @@ class Errors extends Component {
       console.log("logic in Errors.js cDU fires");
       this.setState(
         {
-          destination: this.props.trainErrors[0].destination,
-          newtime: this.props.trainErrors[0].newtime,
-          newtime24: this.props.trainErrors[0].newtime24,
-          origin: this.props.trainErrors[0].origin,
-          remarks_boarding: this.props.trainErrors[0].remarks_boarding,
-          scheduled: this.props.trainErrors[0].scheduled,
-          scheduled24: this.props.trainErrors[0].scheduled24,
-          service: this.props.trainErrors[0].service,
-          trainno: this.props.trainErrors[0].trainno
+          destination: this.props.trainErrors.destination,
+          newtime: this.props.trainErrors.newtime,
+          newtime24: this.props.trainErrors.newtime24,
+          origin: this.props.trainErrors.origin,
+          remarks_boarding: this.props.trainErrors.remarks_boarding,
+          scheduled: this.props.trainErrors.scheduled,
+          scheduled24: this.props.trainErrors.scheduled24,
+          service: this.props.trainErrors.service,
+          trainno: this.props.trainErrors.trainno
         },
         () => console.log("this.state=", this.state)
       );
