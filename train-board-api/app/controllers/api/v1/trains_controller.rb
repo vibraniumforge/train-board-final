@@ -59,7 +59,6 @@ module Api::V1
 
     def amtrak_station_search
       response = Faraday.get("http://www.dixielandsoftware.net/cgi-bin/station_search.pl?data=#{params[:id]}") 
-      puts response
       if response.success? 
         @stations = response.body
         # render json: {message: "Amtrak info found.", success: true, data: @stations }, status: 200
