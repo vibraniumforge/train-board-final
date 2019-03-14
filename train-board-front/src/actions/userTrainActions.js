@@ -42,6 +42,32 @@ export const getTrainById = id => {
   };
 };
 
+// export const createTrain = train => {
+//   let data = {
+//     method: "POST",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//       mode: "no-cors",
+//       cache: "no-cache"
+//     },
+//     body: JSON.stringify({ train })
+//   };
+//   return dispatch => {
+//     fetch(`${url}`, data)
+//       .then(res => {
+//         const resp = res.json();
+//         if (res.ok) {
+//           return resp;
+//         }
+//         throw Error(resp);
+//       })
+//       .then(train => dispatch({ type: "CREATE_TRAIN", payload: train }))
+//       .catch(err => dispatch({ type: "TRAIN_ERRORS", payload: err }))
+//       .catch(err => console.log("Error in createTrain=", err));
+//   };
+// };
+
 export const createTrain = train => {
   let data = {
     method: "POST",
@@ -82,7 +108,6 @@ export const createTrain = train => {
 //       if (res.ok) {
 //         return resp
 //       }
-
 //       throw Error(resp)
 //     })
 //     .then(train =>dispatch({type: "CREATE_TRAIN",payload: train}))
