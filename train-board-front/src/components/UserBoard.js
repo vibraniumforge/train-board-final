@@ -13,33 +13,26 @@ import {
   deleteTrain
 } from "../actions/userTrainActions";
 
-class UserBoard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      likes: 0
-    };
-  }
+import LikeButton from "./LikeButton";
+import Time from "./Time";
 
+class UserBoard extends Component {
   onDeleteTrain = e => {
     e.preventDefault();
-    console.log("onDeleteTrain in UserBoard fires");
     this.props.deleteTrain(e.target.dataset.id);
   };
 
   onUpdateTrain = e => {
     e.preventDefault();
-    console.log("onUpdateTrain in UserBoard fires");
     this.props.getTrainById(e.target.dataset.id);
     this.props.history.push("new_user_train");
   };
 
-  handleChange;
   incrementLikes = e => {
     e.preventDefault();
-    const currentLikes = this.state.likes;
-    // dataset;
-    this.setState({ likes: currentLikes + 1 });
+    console.log("incrementLikes fires");
+    const totalLikes = this.state.likes;
+    this.setState({ likes: totalLikes + 1 });
   };
 
   render() {
@@ -47,7 +40,6 @@ class UserBoard extends Component {
       this.props.userTrains &&
       this.props.userTrains.map(train => {
         return train.trainno.trim() ? (
-          // <OneTrain likes={this.state.likes}/>
           <tr key={train.id}>
             <td>{train.trainno}</td>
             <td>{nameHelper(train.service)}</td>
@@ -64,6 +56,7 @@ class UserBoard extends Component {
               <button
                 type="button"
                 data-id={train.id}
+                className="board-button"
                 onClick={e => this.onUpdateTrain(e)}
               >
                 Update
@@ -73,20 +66,14 @@ class UserBoard extends Component {
               <button
                 type="button"
                 data-id={train.id}
+                className="board-button"
                 onClick={e => this.onDeleteTrain(e)}
               >
                 Delete
               </button>
             </td>
             <td>
-              <button
-                type="button"
-                onClick={e => this.incrementLikes(e)}
-                data-id={train.id}
-                value={this.state.likes}
-              >
-                {this.props.likes}
-              </button>
+              <LikeButton />
             </td>
           </tr>
         ) : null;
@@ -96,6 +83,7 @@ class UserBoard extends Component {
         <div>
           <table>
             <thead>
+              <Time />
               <tr>
                 <th>Train Number</th>
                 <th>Train Name</th>
@@ -106,7 +94,7 @@ class UserBoard extends Component {
                 <th>New Time - 24h</th>
                 <th>Origin</th>
                 <th>Remarks</th>
-                <th colSpan="7" />
+                {/* <th colSpan="9" /> */}
               </tr>
             </thead>
             <tbody id="train-board">{trainsInfo}</tbody>
