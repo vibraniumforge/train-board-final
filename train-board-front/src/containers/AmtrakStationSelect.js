@@ -10,18 +10,21 @@ class StationSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      station: ""
+      stationCode: "",
+      stationName: ""
     };
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      stationCode: e.target.value,
+      stationName: e.target.selectedOptions[0].innerText
+    });
   };
 
   onSubmitAmtrak = e => {
     e.preventDefault();
-    const station = this.state.station;
-    this.props.getAmtrakTrains(station);
+    this.props.getAmtrakTrains(this.state.stationCode);
   };
 
   render() {
@@ -31,7 +34,7 @@ class StationSelect extends Component {
           <div id="station-select" className="center">
             <h4>Choose a station:</h4>{" "}
             <select
-              name="station"
+              name="stationCode"
               value={this.state.station}
               onChange={this.onChange}
             >
@@ -52,7 +55,10 @@ class StationSelect extends Component {
             </button>
           </div>
         </form>
-        <AmtrakBoard amtrakTrains={this.props.trains} />
+        <AmtrakBoard
+          stationName={this.state.stationName}
+          amtrakTrains={this.props.trains}
+        />
       </React.Fragment>
     );
   }
