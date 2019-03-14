@@ -29,13 +29,13 @@ export default class Navbar extends Component {
                 </Link>
               </li>
               <li className="Nav__item">
-                <Link className="Nav__link" to="/new_user_train">
-                  Create a new Train
+                <Link className="Nav__link" to="/view_user_trains">
+                  View My Train Board
                 </Link>
               </li>
               <li className="Nav__item">
-                <Link className="Nav__link" to="/view_user_trains">
-                  View My Trains
+                <Link className="Nav__link" to="/new_user_train">
+                  Create a new Train
                 </Link>
               </li>
             </ul>
