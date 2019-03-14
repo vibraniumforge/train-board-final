@@ -4,10 +4,11 @@ import { nameHelper } from "../helpers/nameHelper";
 import { remarksHelper } from "../helpers/remarksHelper";
 import { timeHelper } from "../helpers/timeHelper";
 
+import Time from "./Time";
+
 class AmtrakBoard extends Component {
   render() {
     console.log("tpat=", this.props.amtrakTrains);
-
     const trainsInfo =
       this.props.amtrakTrains &&
       this.props.amtrakTrains.map((train, index) => {
@@ -33,6 +34,7 @@ class AmtrakBoard extends Component {
         <div>
           <table>
             <thead>
+              <Time stationName={this.props.stationName} />
               <tr>
                 <th>Train Number</th>
                 <th>Train Name</th>
@@ -43,7 +45,6 @@ class AmtrakBoard extends Component {
                 <th>New Time - 24h</th>
                 <th>Origin</th>
                 <th>Remarks</th>
-                <th colSpan="7" />
               </tr>
             </thead>
             <tbody id="train-board">{trainsInfo}</tbody>
