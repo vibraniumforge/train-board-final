@@ -29,12 +29,12 @@ class TrainForm extends Component {
   };
 
   handleSubmit = e => {
-    console.log("trainform onSubmit fires");
+    console.log("NewTrainForm handleSubmit fires");
     e.preventDefault();
     const newTrain = this.state;
     this.props.createTrain(newTrain);
-    if (!this.props.trainErrors) {
-      // this.props.history.push("/view_user_trains");
+    if (this.props.trainErrors !== []) {
+      this.props.history.push("/view_user_trains");
       this.clearForm();
     }
   };
@@ -135,7 +135,7 @@ class TrainForm extends Component {
             />
           </div>
           <br />
-          <button type="button" id="submit" onClick={this.handleSubmit}>
+          <button type="button" id="submit" onClick={e => this.handleSubmit(e)}>
             Submit
           </button>
           <button type="button" id="clear" onClick={this.clearForm}>
