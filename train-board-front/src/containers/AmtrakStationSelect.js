@@ -4,14 +4,15 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { getAmtrakTrains } from "../actions/amtrakTrainActions";
-import AmtrakBoard from "../components/AmtrakBoard";
+import AmtrakSelectBoard from "../components/AmtrakSelectBoard";
 
 class StationSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
       stationCode: "",
-      stationName: ""
+      stationName: "",
+      showBoard: false
     };
   }
 
@@ -25,6 +26,7 @@ class StationSelect extends Component {
   onSubmitAmtrak = e => {
     e.preventDefault();
     this.props.getAmtrakTrains(this.state.stationCode);
+    this.setState({ showBoard: true });
   };
 
   render() {
@@ -55,10 +57,12 @@ class StationSelect extends Component {
             </button>
           </div>
         </form>
-        <AmtrakBoard
-          stationName={this.state.stationName}
-          amtrakTrains={this.props.trains}
-        />
+        {this.state.showBoard ? (
+          <AmtrakSelectBoard
+            stationName={this.state.stationName}
+            amtrakTrains={this.props.trains}
+          />
+        ) : null}
       </React.Fragment>
     );
   }
