@@ -5,42 +5,61 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { getAmtrakTrains } from "../actions/amtrakTrainActions";
+import AmtrakSearchBoard from "./AmtrakSearchBoard";
 
 class StationResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      placeAr: []
+      placeAr: [],
+      stationName: "",
+      showBoard: false
     };
   }
 
   componentDidMount() {
-    console.log("cdm fires");
-    console.log("this.props.trains in CDM=", this.props.trains);
+    console.log("cDM fires");
+    console.log(
+      "this.props.amtrakStationSearchResult in cDM=",
+      this.props.amtrakStationSearchResult
+    );
     this.setState({ placeAr: [] });
     this.fixAr();
   }
 
   componentDidUpdate(prevProps) {
-    console.log("cdu fires");
-    console.log("prevProps=", prevProps.trains);
-    console.log("this.props.trains in CDU=", this.props.trains);
-    if (this.props.trains.length !== prevProps.trains.length) {
+    console.log("cDU fires");
+    console.log(
+      "prevProps.amtrakStationSearchResult=",
+      prevProps.amtrakStationSearchResult
+    );
+    console.log(
+      "this.props.amtrakStationSearchResult in cDU=",
+      this.props.amtrakStationSearchResult
+    );
+    if (
+      this.props.amtrakStationSearchResult.length !==
+      prevProps.amtrakStationSearchResult.length
+    ) {
       console.log("Cdu logic fires");
       this.fixAr();
     }
   }
 
-  sendStationRequest = e => {
+  onSubmit = e => {
+    console.log("onSubmit fires in StationResult");
     this.props.getAmtrakTrains(e.target.dataset.stationcode);
-    this.props.history.push("/select_amtrak_station");
-    this.setState({ placeAr: "" });
+    this.setState({
+      placeAr: "",
+      stationName: e.target.dataset.stationname,
+      showBoard: true
+    });
   };
 
   fixAr() {
     console.log("fixAr fires");
-    if (this.props.trains) {
-      const trainsString = this.props.trains;
+    if (this.props.amtrakStationSearchResult) {
+      const trainsString = this.props.amtrakStationSearchResult;
       console.log("trainsString in fixAr=", trainsString);
       let newAr = [];
       trainsString
@@ -63,7 +82,7 @@ class StationResult extends Component {
         <li key={index}>
           <button
             type="button"
-            onClick={this.sendStationRequest}
+            onClick={this.onSubmit}
             data-stationcode={place.slice(0, 3)}
             data-stationname={place.slice(4)}
           >
@@ -78,10 +97,22 @@ class StationResult extends Component {
         <div id="station-buttons" className="center">
           <ul className="center">{places}</ul>
         </div>
+        <div>
+          {this.state.showBoard ? (
+            <AmtrakSearchBoard
+              stationName={this.state.stationName}
+              amtrakTrains={this.props.amtrakTrains}
+            />
+          ) : null}
+        </div>
       </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  amtrakTrains: state.amtrakTrains.amtrakTrains
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
@@ -93,7 +124,7 @@ const mapDispatchToProps = dispatch =>
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(StationResult)
 );
