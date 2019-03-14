@@ -39,7 +39,7 @@ export default function userTrainsReducer(state = initialState, action) {
         service: action.payload.data.service,
         trainno: action.payload.data.trainno
       };
-      return { ...state, trainErrors: [...state.trainErrors, errors] };
+      return { ...state, trainErrors: errors };
     case "DELETE_TRAIN":
       const userSavedTrains = state.userSavedTrains.filter(
         train => train.id !== action.payload.data.id
