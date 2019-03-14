@@ -171,7 +171,7 @@ export default withRouter(
   )(TrainForm)
 );
 
-// old one
+// old redux fx
 
 // const mapDispatchToProps = dispatch =>
 //   bindActionCreators(
