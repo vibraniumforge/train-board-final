@@ -82,6 +82,7 @@ class StationResult extends Component {
         <li key={index}>
           <button
             type="button"
+            className="station-button"
             onClick={this.onSubmit}
             data-stationcode={place.slice(0, 3)}
             data-stationname={place.slice(4)}
@@ -94,7 +95,7 @@ class StationResult extends Component {
       <React.Fragment>
         {/* <div dangerouslySetInnerHTML={{ __html: this.props.trains }}>
         </div> */}
-        <div id="station-buttons" className="center">
+        <div id="station-buttons-div" className="center">
           <ul className="center">{places}</ul>
         </div>
         <div>
