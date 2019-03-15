@@ -29,28 +29,32 @@ class AmtrakSearchBoard extends Component {
           </tr>
         ) : null;
       });
-    console.log("trainsInfo=", trainsInfo);
+
     return (
       <React.Fragment>
-        <div>
-          <table>
-            <thead>
-              <Time stationName={this.props.stationName} />
-              <tr>
-                <th>Train Number</th>
-                <th>Train Name</th>
-                <th>Destination</th>
-                <th>Scheduled Time</th>
-                <th>Scheduled Time - 24h</th>
-                <th>New Time</th>
-                <th>New Time - 24h</th>
-                <th>Origin</th>
-                <th>Remarks</th>
-              </tr>
-            </thead>
-            <tbody id="train-board">{trainsInfo}</tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <Time stationName={this.props.stationName} />
+            <tr>
+              <th>Train Number</th>
+              <th>Train Name</th>
+              <th>Destination</th>
+              <th>Scheduled Time</th>
+              <th>Scheduled Time - 24h</th>
+              <th>New Time</th>
+              <th>New Time - 24h</th>
+              <th>Origin</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody id="train-board">
+            {trainsInfo && trainsInfo !== [] && trainsInfo[0] ? (
+              trainsInfo
+            ) : (
+              <h4>No Trains Found</h4>
+            )}
+          </tbody>
+        </table>
       </React.Fragment>
     );
   }
