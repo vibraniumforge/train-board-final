@@ -32,11 +32,13 @@ class TrainForm extends Component {
     console.log("NewTrainForm handleSubmit fires");
     e.preventDefault();
     const newTrain = this.state;
+    // this.props.createTrain(newTrain).then(res => {
+    //   if (this.props.trainErrors !== []) {
+    //     this.props.history.push("/view_user_trains");
+    //     this.clearForm();
+    //   }
+    // });
     this.props.createTrain(newTrain);
-    if (this.props.trainErrors !== []) {
-      this.props.history.push("/view_user_trains");
-      this.clearForm();
-    }
   };
 
   clearForm = () => {
