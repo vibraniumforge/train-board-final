@@ -77,9 +77,16 @@ p {
   float: center;
 }
 
-#station-buttons {
+#station-buttons-div {
   display: flex;
   justify-content: center;
+}
+
+.station-button {
+  color: red;
+  background-color: navy;
+  padding: 10px;
+  font-size: 20px;
 }
 
 .board-button {
