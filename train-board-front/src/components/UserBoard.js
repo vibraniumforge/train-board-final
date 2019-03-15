@@ -28,13 +28,6 @@ class UserBoard extends Component {
     this.props.history.push("new_user_train");
   };
 
-  incrementLikes = e => {
-    e.preventDefault();
-    console.log("incrementLikes fires");
-    const totalLikes = this.state.likes;
-    this.setState({ likes: totalLikes + 1 });
-  };
-
   render() {
     const trainsInfo =
       this.props.userTrains &&
