@@ -25,8 +25,12 @@ class StationSelect extends Component {
 
   onSubmitAmtrak = e => {
     e.preventDefault();
-    this.props.getAmtrakTrains(this.state.stationCode);
-    this.setState({ showBoard: true });
+    if (this.state.stationCode) {
+      this.props.getAmtrakTrains(this.state.stationCode);
+      this.setState({
+        showBoard: true
+      });
+    }
   };
 
   render() {
@@ -34,7 +38,7 @@ class StationSelect extends Component {
       <React.Fragment>
         <form>
           <div id="station-select" className="center">
-            <h4>Choose a station:</h4>{" "}
+            <h4>Choose a station:</h4> <br />
             <select
               name="stationCode"
               value={this.state.station}
