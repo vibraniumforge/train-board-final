@@ -21,8 +21,10 @@ class AmtrakStationSearch extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.getAmtrakStation(this.state.stationSearchInput);
-    this.setState({ stationSearchInput: "", showBoard: true });
+    if (this.state.stationSearchInput) {
+      this.props.getAmtrakStation(this.state.stationSearchInput);
+      this.setState({ stationSearchInput: "", showBoard: true });
+    }
   };
 
   render() {
@@ -38,7 +40,7 @@ class AmtrakStationSearch extends Component {
             value={this.state.stationSearchInput}
             onChange={this.onChange}
           />
-          <button type="button" id="search-btn" onClick={this.onSubmit}>
+          <button type="button" id="search-btn" onClick={e => this.onSubmit(e)}>
             Search
           </button>
         </div>
