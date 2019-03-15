@@ -7,8 +7,16 @@ import { timeHelper } from "../helpers/timeHelper";
 import Time from "./Time";
 
 class AmtrakSelectBoard extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.amtrakTrains === nextProps.amtrakTrains) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   render() {
-    console.log("tpat=", this.props.amtrakTrains);
+    console.log("this.props.amtrakTrains=", this.props.amtrakTrains);
     const trainsInfo =
       this.props.amtrakTrains &&
       this.props.amtrakTrains.map((train, index) => {
@@ -28,28 +36,30 @@ class AmtrakSelectBoard extends Component {
           </tr>
         ) : null;
       });
-    console.log(trainsInfo);
+    // if(!trainsInfo[0]) {
+
+    // }
     return (
       <React.Fragment>
-        <div>
-          <table>
-            <thead>
-              <Time stationName={this.props.stationName} />
-              <tr>
-                <th>Train Number</th>
-                <th>Train Name</th>
-                <th>Destination</th>
-                <th>Scheduled Time</th>
-                <th>Scheduled Time - 24h</th>
-                <th>New Time</th>
-                <th>New Time - 24h</th>
-                <th>Origin</th>
-                <th>Remarks</th>
-              </tr>
-            </thead>
-            <tbody id="train-board">{trainsInfo}</tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <Time stationName={this.props.stationName} />
+            <tr>
+              <th>Train Number</th>
+              <th>Train Name</th>
+              <th>Destination</th>
+              <th>Scheduled Time</th>
+              <th>Scheduled Time - 24h</th>
+              <th>New Time</th>
+              <th>New Time - 24h</th>
+              <th>Origin</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody id="train-board">
+            {trainsInfo !== [] ? trainsInfo : <h4>No Trains Found</h4>}
+          </tbody>
+        </table>
       </React.Fragment>
     );
   }
