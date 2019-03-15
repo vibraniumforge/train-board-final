@@ -100,6 +100,7 @@ class Errors extends Component {
             />
             <input
               type="text"
+              className="red"
               id="new-time"
               name="newtime"
               placeholder="New Time - if late. Format HHMM"
@@ -108,6 +109,7 @@ class Errors extends Component {
             />
             <input
               type="text"
+              className="red"
               id="new-time-24"
               name="newtime24"
               placeholder="New Time - if late. Format HHMM with 24 h"
@@ -117,6 +119,7 @@ class Errors extends Component {
             <br />
             <input
               type="text"
+              className="red"
               id="train-origin"
               name="origin"
               placeholder="Train Origin"
@@ -125,6 +128,7 @@ class Errors extends Component {
             />
             <input
               type="text"
+              className="red"
               id="train-remarks"
               name="remarks_boarding"
               placeholder="Remarks"
@@ -133,6 +137,7 @@ class Errors extends Component {
             />
             <input
               type="text"
+              className="red"
               id="train-scheduled-arrival"
               name="scheduled"
               placeholder="Scheduled Arrival"
@@ -142,6 +147,7 @@ class Errors extends Component {
             <br />
             <input
               type="text"
+              className="red"
               id="train-scheduled-arrival"
               name="scheduled24"
               placeholder="Scheduled Arrival 24h"
@@ -150,6 +156,7 @@ class Errors extends Component {
             />
             <input
               type="text"
+              className="red"
               id="train-service"
               name="service"
               placeholder="Service Name"
@@ -158,6 +165,7 @@ class Errors extends Component {
             />
             <input
               type="text"
+              className="red"
               id="train-number"
               name="trainno"
               placeholder="Number"
