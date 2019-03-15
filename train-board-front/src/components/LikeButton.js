@@ -10,20 +10,13 @@ class LikeButton extends Component {
 
   incrementLikes = e => {
     e.preventDefault();
-    console.log("incrementLikes fires");
-    this.setState({ likes: this.state.likes + 1 }, () =>
-      console.log(this.state.likes)
-    );
+    this.setState({ likes: this.state.likes + 1 });
   };
 
   render() {
     return (
       <div>
-        <button
-          type="button"
-          //   data-id={this.props.id}
-          onClick={e => this.incrementLikes(e)}
-        >
+        <button type="button" onClick={this.incrementLikes}>
           Likes: {this.state.likes}
         </button>
       </div>
