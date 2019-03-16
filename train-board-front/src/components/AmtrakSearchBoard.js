@@ -48,11 +48,9 @@ class AmtrakSearchBoard extends Component {
             </tr>
           </thead>
           <tbody id="train-board">
-            {trainsInfo && trainsInfo !== [] && trainsInfo[0] ? (
-              trainsInfo
-            ) : (
-              <h4>No Trains Found</h4>
-            )}
+            {trainsInfo && trainsInfo !== [] && trainsInfo[0]
+              ? trainsInfo
+              : "No Trains Found"}
           </tbody>
         </table>
       </React.Fragment>
