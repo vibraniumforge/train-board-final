@@ -8,7 +8,6 @@ import Time from "./Time";
 
 class AmtrakSearchBoard extends Component {
   render() {
-    console.log("this.props.amtrakTrains=", this.props.amtrakTrains);
     const trainsInfo =
       this.props.amtrakTrains &&
       this.props.amtrakTrains !== [] &&

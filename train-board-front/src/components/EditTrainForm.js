@@ -30,20 +30,17 @@ class TrainForm extends Component {
       this.props.trainToUpdate.length !== prevProps.trainToUpdate.length
     ) {
       console.log("logic in cDU fires");
-      this.setState(
-        {
-          destination: this.props.trainToUpdate.destination,
-          newtime: this.props.trainToUpdate.newtime,
-          newtime24: this.props.trainToUpdate.newtime24,
-          origin: this.props.trainToUpdate.origin,
-          remarks_boarding: this.props.trainToUpdate.remarks_boarding,
-          scheduled: this.props.trainToUpdate.scheduled,
-          scheduled24: this.props.trainToUpdate.scheduled24,
-          service: this.props.trainToUpdate.service,
-          trainno: this.props.trainToUpdate.trainno
-        },
-        () => console.log("this.state=", this.state)
-      );
+      this.setState({
+        destination: this.props.trainToUpdate.destination,
+        newtime: this.props.trainToUpdate.newtime,
+        newtime24: this.props.trainToUpdate.newtime24,
+        origin: this.props.trainToUpdate.origin,
+        remarks_boarding: this.props.trainToUpdate.remarks_boarding,
+        scheduled: this.props.trainToUpdate.scheduled,
+        scheduled24: this.props.trainToUpdate.scheduled24,
+        service: this.props.trainToUpdate.service,
+        trainno: this.props.trainToUpdate.trainno
+      });
     }
   }
 

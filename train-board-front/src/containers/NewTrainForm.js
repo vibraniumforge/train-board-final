@@ -29,7 +29,6 @@ class TrainForm extends Component {
   };
 
   handleSubmit = e => {
-    console.log("NewTrainForm handleSubmit fires");
     e.preventDefault();
     const newTrain = this.state;
     // this.props.createTrain(newTrain).then(res => {

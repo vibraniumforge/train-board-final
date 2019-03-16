@@ -18,7 +18,7 @@ export const getAmtrakTrains = station => {
           payload: res.data.results[0].data
         })
       )
-      .catch(err => console.error("Error in getAmtrakTrains=", err));
+      .catch(err => console.log("Error in getAmtrakTrains=", err));
   };
 };
 

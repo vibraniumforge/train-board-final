@@ -19,7 +19,6 @@ export const getUserTrains = () => {
 };
 
 export const getTrainById = id => {
-  console.log("getTrainById in userTrainActions fires, id=", id);
   let data = {
     method: "GET",
     headers: {
@@ -77,12 +76,6 @@ export const createTrain = train => {
 };
 
 export const updateTrain = (id, train) => {
-  console.log(
-    "updateTrain in userTrainActions fires, id=",
-    id,
-    "updatedTrain=",
-    train
-  );
   let data = {
     method: "PATCH",
     headers: {
@@ -107,7 +100,6 @@ export const updateTrain = (id, train) => {
 };
 
 export const deleteTrain = id => {
-  console.log("deleteTrain in userTrainActions fires");
   let data = {
     method: "DELETE",
     headers: {
