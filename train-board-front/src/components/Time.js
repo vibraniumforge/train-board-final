@@ -4,7 +4,8 @@ class Time extends Component {
   constructor(props) {
     super(props);
     let now = new Date();
-    now.setHours(now.getHours() + parseInt(this.props.timeZone, 10));
+    const offset = parseInt(this.props.timeZone, 10) || 0;
+    now.setHours(now.getHours() + offset);
     this.state = {
       time: now.toLocaleTimeString("en-US"),
       time24h: now.toLocaleTimeString("en-GB")
@@ -20,11 +21,12 @@ class Time extends Component {
   }
 
   tick() {
-    let now = new Date();
-    now.setHours(now.getHours() + parseInt(this.props.timeZone), 10);
+    let now2 = new Date();
+    const offset2 = parseInt(this.props.timeZone, 10) || 0;
+    now2.setHours(now2.getHours() + offset2);
     this.setState({
-      time: now.toLocaleTimeString("en-US"),
-      time24h: now.toLocaleTimeString("en-GB")
+      time: now2.toLocaleTimeString("en-US"),
+      time24h: now2.toLocaleTimeString("en-GB")
     });
   }
 
