@@ -14,9 +14,31 @@ import {
 } from "../actions/userTrainActions";
 
 import LikeButton from "./LikeButton";
-import Time from "./Time";
 
 class UserBoard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: new Date().toLocaleTimeString("en-US"),
+      time24h: new Date().toLocaleTimeString("en-GB")
+    };
+  }
+
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
+  tick() {
+    this.setState({
+      time: new Date().toLocaleTimeString("en-US"),
+      time24h: new Date().toLocaleTimeString("en-GB")
+    });
+  }
+
   onDeleteTrain = e => {
     e.preventDefault();
     this.props.deleteTrain(e.target.dataset.id);
@@ -76,7 +98,13 @@ class UserBoard extends Component {
         <div>
           <table>
             <thead>
-              <Time />
+              <tr>
+                <th colSpan="2">{this.state.time}</th>
+                <th />
+                <th colSpan="3">My Trains</th>
+                <th />
+                <th colSpan="2">{this.state.time24h}</th>
+              </tr>
               <tr>
                 <th>Train Number</th>
                 <th>Train Name</th>
@@ -87,7 +115,6 @@ class UserBoard extends Component {
                 <th>New Time - 24h</th>
                 <th>Origin</th>
                 <th>Remarks</th>
-                {/* <th colSpan="9" /> */}
               </tr>
             </thead>
             <tbody id="train-board">{trainsInfo}</tbody>
