@@ -3,9 +3,11 @@ import React, { Component } from "react";
 class Time extends Component {
   constructor(props) {
     super(props);
+    let now = new Date();
+    now.setHours(now.getHours() + parseInt(this.props.timeZone, 10));
     this.state = {
-      time: new Date().toLocaleTimeString(),
-      time24h: new Date().toLocaleTimeString("en-GB")
+      time: now.toLocaleTimeString("en-US"),
+      time24h: now.toLocaleTimeString("en-GB")
     };
   }
 
@@ -18,9 +20,11 @@ class Time extends Component {
   }
 
   tick() {
+    let now = new Date();
+    now.setHours(now.getHours() + parseInt(this.props.timeZone), 10);
     this.setState({
-      time: new Date().toLocaleTimeString(),
-      time24h: new Date().toLocaleTimeString("en-GB")
+      time: now.toLocaleTimeString("en-US"),
+      time24h: now.toLocaleTimeString("en-GB")
     });
   }
 
