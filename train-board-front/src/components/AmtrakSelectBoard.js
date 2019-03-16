@@ -43,7 +43,10 @@ class AmtrakSelectBoard extends Component {
       <React.Fragment>
         <table>
           <thead>
-            <Time stationName={this.props.stationName} />
+            <Time
+              stationName={this.props.stationName}
+              timeZone={this.props.timeZone}
+            />
             <tr>
               <th>Train Number</th>
               <th>Train Name</th>
