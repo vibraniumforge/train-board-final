@@ -30,7 +30,7 @@ class AmtrakSelectBoard extends Component {
             <td>{timeHelper(train.newtime24)}</td>
             <td>{train.origin}</td>
             <td className={remarksHelper(train.remarks_boarding)}>
-              {train.remarks_boarding}
+              {nameHelper(train.remarks_boarding)}
             </td>
           </tr>
         ) : null;
@@ -51,7 +51,7 @@ class AmtrakSelectBoard extends Component {
               <th>Train Name</th>
               <th>Destination</th>
               <th>Scheduled Time</th>
-              <th>Scheduled Time - 24h</th>
+              <th>Scheduled - 24h</th>
               <th>New Time</th>
               <th>New Time - 24h</th>
               <th>Origin</th>
@@ -59,7 +59,17 @@ class AmtrakSelectBoard extends Component {
             </tr>
           </thead>
           <tbody id="train-board">
-            {trainsInfo !== [] ? trainsInfo : <h4>No Trains Found</h4>}
+            {trainsInfo && trainsInfo !== [] && trainsInfo[0] ? (
+              trainsInfo
+            ) : (
+              <tr>
+                <th colSpan="2">{null}</th>
+                <th />
+                <th colSpan="3">No Trains Found</th>
+                <th />
+                <th colSpan="2">{null}</th>
+              </tr>
+            )}
           </tbody>
         </table>
       </React.Fragment>
