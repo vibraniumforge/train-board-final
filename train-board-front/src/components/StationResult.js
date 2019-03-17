@@ -18,7 +18,6 @@ class StationResult extends Component {
   }
 
   componentDidMount() {
-    console.log("cDM fires");
     console.log(
       "this.props.amtrakStationSearchResult in cDM=",
       this.props.amtrakStationSearchResult
@@ -28,7 +27,6 @@ class StationResult extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("cDU fires");
     console.log(
       "prevProps.amtrakStationSearchResult=",
       prevProps.amtrakStationSearchResult
@@ -60,7 +58,6 @@ class StationResult extends Component {
     console.log("fixAr fires");
     if (this.props.amtrakStationSearchResult) {
       const trainsString = this.props.amtrakStationSearchResult;
-      console.log("trainsString in fixAr=", trainsString);
       let newAr = [];
       trainsString
         .split('blank">')
@@ -93,8 +90,6 @@ class StationResult extends Component {
       ));
     return (
       <React.Fragment>
-        {/* <div dangerouslySetInnerHTML={{ __html: this.props.trains }}>
-        </div> */}
         <div id="station-buttons-div" className="center">
           <ul className="center">{places}</ul>
         </div>
