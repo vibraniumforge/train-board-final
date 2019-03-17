@@ -45,6 +45,8 @@ const nameHelper = name => {
       return "Hoosier State";
     case "Riv. Runner":
       return "River Runner";
+    case "S. Disrupt":
+      return "Service Disruption";
     default:
       return name;
   }
