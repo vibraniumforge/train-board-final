@@ -16,7 +16,11 @@ class LikeButton extends Component {
   render() {
     return (
       <div>
-        <button type="button" onClick={this.incrementLikes}>
+        <button
+          type="button"
+          className="board-button"
+          onClick={this.incrementLikes}
+        >
           Likes: {this.state.likes}
         </button>
       </div>
