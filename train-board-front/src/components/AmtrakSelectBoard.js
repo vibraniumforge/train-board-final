@@ -18,6 +18,7 @@ class AmtrakSelectBoard extends Component {
   render() {
     const trainsInfo =
       this.props.amtrakTrains &&
+      this.props.amtrakTrains.length !== 0 &&
       this.props.amtrakTrains.map((train, index) => {
         return train.trainno.trim() ? (
           <tr key={index}>
@@ -59,7 +60,7 @@ class AmtrakSelectBoard extends Component {
             </tr>
           </thead>
           <tbody id="train-board">
-            {trainsInfo && trainsInfo !== [] && trainsInfo[0] ? (
+            {trainsInfo && trainsInfo !== [] && trainsInfo[0] !== null ? (
               trainsInfo
             ) : (
               <tr>
