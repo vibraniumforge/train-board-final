@@ -110,7 +110,7 @@ class UserBoard extends Component {
                 <th>Train Name</th>
                 <th>Destination</th>
                 <th>Scheduled Time</th>
-                <th>Scheduled Time - 24h</th>
+                <th>Scheduled - 24h</th>
                 <th>New Time</th>
                 <th>New Time - 24h</th>
                 <th>Origin</th>
