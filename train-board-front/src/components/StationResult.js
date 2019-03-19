@@ -50,11 +50,12 @@ class StationResult extends Component {
     this.setState({
       placeAr: "",
       stationName: e.target.dataset.stationname,
+      showButtons: true,
       showBoard: true
     });
   };
 
-  fixAr() {
+  fixAr = () => {
     console.log("fixAr fires");
     if (this.props.amtrakStationSearchResult) {
       const trainsString = this.props.amtrakStationSearchResult;
@@ -69,25 +70,34 @@ class StationResult extends Component {
         console.log("setstate fires", "this.state.placeAr=", this.state.placeAr)
       );
     }
-  }
+  };
 
   render() {
     const places =
       this.state.placeAr &&
-      this.state.placeAr !== [] &&
-      this.state.placeAr.map((place, index) => (
-        <li key={index}>
-          <button
-            type="button"
-            className="station-button"
-            onClick={this.onSubmit}
-            data-stationcode={place.slice(0, 3)}
-            data-stationname={place.slice(4)}
-          >
-            {place}
-          </button>
+      this.state.placeAr.length !== 0 &&
+      this.props.showButtons ? (
+        this.state.placeAr.map((place, index) => (
+          <li key={index}>
+            <button
+              type="button"
+              className="station-button"
+              onClick={this.onSubmit}
+              data-stationcode={place.slice(0, 3)}
+              data-stationname={place.slice(4)}
+            >
+              {place}
+            </button>
+          </li>
+        ))
+      ) : (
+        <li key={1}>
+          {this.props.showButtons && this.state.placeAr === []
+            ? "No Stations Found"
+            : null}
         </li>
-      ));
+      );
+
     return (
       <React.Fragment>
         <div id="station-buttons-div" className="center">
