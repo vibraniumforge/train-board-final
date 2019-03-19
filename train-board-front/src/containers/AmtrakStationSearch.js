@@ -11,7 +11,7 @@ class AmtrakStationSearch extends Component {
     super(props);
     this.state = {
       stationSearchInput: "",
-      showBoard: false
+      showButtons: false
     };
   }
 
@@ -23,7 +23,10 @@ class AmtrakStationSearch extends Component {
     e.preventDefault();
     if (this.state.stationSearchInput) {
       this.props.getAmtrakStation(this.state.stationSearchInput);
-      this.setState({ stationSearchInput: "", showBoard: true });
+      this.setState({
+        stationSearchInput: "",
+        showButtons: true
+      });
     }
   };
 
@@ -47,6 +50,7 @@ class AmtrakStationSearch extends Component {
         <div id="search-result">
           <StationResult
             amtrakStationSearchResult={this.props.amtrakStationSearchResult}
+            showButtons={this.state.showButtons}
           />
         </div>
       </React.Fragment>
