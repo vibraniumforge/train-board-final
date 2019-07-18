@@ -14,17 +14,6 @@ export default function userTrainsReducer(state = initialState, action) {
     case "CREATE_TRAIN":
       return { ...state, trainCreateResult: action.payload };
     case "TRAIN_ERRORS":
-      // const trainErrors = {
-      //   destination: action.payload.destination,
-      //   origin: action.payload.origin,
-      //   remarks_boarding: action.payload.remarks_boarding,
-      //   scheduled: action.payload.scheduled,
-      //   scheduled24: action.payload.scheduled24,
-      //   newtime: action.payload.newtime,
-      //   newtime24: action.payload.newtime24,
-      //   service: action.payload.service,
-      //   trainno: action.payload.trainno
-      // };
       return { ...state, trainErrors: action.payload };
     case "DELETE_TRAIN":
       const newUserSavedTrains = state.userSavedTrains.filter(
