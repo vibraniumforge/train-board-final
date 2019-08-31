@@ -16,10 +16,11 @@ code {
 #navbar {
   background-color: navy;
   height: 40px;
-  text-align: center;
   padding: 10px;
   text-decoration: none;
   font-size: 20px;
+  text-align: center;
+  font-weight: bold;
 }
 
 ul {
@@ -28,13 +29,18 @@ ul {
 }
 
 li {
-  float: left;
+  display: inline;
 }
 
 li a {
   text-align: center;
   margin: 10px;
   color: red;
+}
+
+select {
+  font-weight: bold;
+  font-size: 12px;
 }
 
 li a:hover {
@@ -93,4 +99,11 @@ p {
   color: yellow;
   background-color: black;
   border: none;
+}
+
+#searchBtn {
+  margin: 10px;
+  background-color: navy;
+  color: red;
+  font-size: 20px;
 }
