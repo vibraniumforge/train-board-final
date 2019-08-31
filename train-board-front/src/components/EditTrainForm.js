@@ -22,12 +22,13 @@ class TrainForm extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("cDU fires in EditTrainForm.js");
-    console.log("this.props.trainToUpdate=", this.props.trainToUpdate);
-    console.log("prevProps.trainToUpdate=", prevProps.trainToUpdate);
+    // console.log("cDU fires in EditTrainForm.js");
+    // console.log("this.props.trainToUpdate=", this.props.trainToUpdate);
+    // console.log("prevProps.trainToUpdate=", prevProps.trainToUpdate);
     if (
       this.props.trainToUpdate &&
-      this.props.trainToUpdate.length !== prevProps.trainToUpdate.length
+      this.props.trainToUpdate !== prevProps.trainToUpdate
+      // this.props.trainToUpdate.length !== prevProps.trainToUpdate.length
     ) {
       console.log("logic in cDU fires");
       this.setState({

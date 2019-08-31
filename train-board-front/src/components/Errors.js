@@ -17,14 +17,14 @@ class Errors extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("cDU fires in Errors.js");
-    console.log("this.props.trainErrors=", this.props.trainErrors);
-    console.log("prevProps.trainErrors=", prevProps.trainErrors);
+    // console.log("cDU fires in Errors.js");
+    // console.log("this.props.trainErrors=", this.props.trainErrors);
+    // console.log("prevProps.trainErrors=", prevProps.trainErrors);
     if (
       this.props.trainErrors &&
       this.props.trainErrors.length !== prevProps.trainErrors.length
     ) {
-      console.log("logic in Errors.js cDU fires");
+      // console.log("logic in Errors.js cDU fires");
       this.setState({
         destination: this.props.trainErrors.destination,
         newtime: this.props.trainErrors.newtime,
