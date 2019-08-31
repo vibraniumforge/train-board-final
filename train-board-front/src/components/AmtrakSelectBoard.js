@@ -3,17 +3,19 @@ import React, { Component } from "react";
 import { nameHelper } from "../helpers/nameHelper";
 import { remarksHelper } from "../helpers/remarksHelper";
 import { timeHelper } from "../helpers/timeHelper";
+// import Solari from "./Solari.js";
+import Loading from "./Loading.js";
 
 import Time from "./Time";
 
 class AmtrakSelectBoard extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.amtrakTrains === nextProps.amtrakTrains) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.props.amtrakTrains === nextProps.amtrakTrains) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
   render() {
     const trainsInfo =
@@ -36,43 +38,60 @@ class AmtrakSelectBoard extends Component {
           </tr>
         ) : null;
       });
-    // if(!trainsInfo[0]) {
-
-    // }
     return (
       <React.Fragment>
-        <table>
-          <thead>
-            <Time
-              stationName={this.props.stationName}
-              timeZone={this.props.timeZone}
-            />
-            <tr>
-              <th>Train Number</th>
-              <th>Train Name</th>
-              <th>Destination</th>
-              <th>Scheduled Time</th>
-              <th>Scheduled - 24h</th>
-              <th>New Time</th>
-              <th>New Time - 24h</th>
-              <th>Origin</th>
-              <th>Remarks</th>
-            </tr>
-          </thead>
-          <tbody id="train-board">
-            {trainsInfo && trainsInfo !== [] && trainsInfo[0] !== null ? (
-              trainsInfo
-            ) : (
+        {trainsInfo && trainsInfo !== [] && trainsInfo[0] !== null ? (
+          <table>
+            <thead>
+              <Time
+                stationName={this.props.stationName}
+                timeZone={this.props.timeZone}
+              />
               <tr>
-                <th colSpan="2">{null}</th>
-                <th />
-                <th colSpan="3">No Trains Found</th>
-                <th />
-                <th colSpan="2">{null}</th>
+                <th>Train Number</th>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th>Scheduled Time</th>
+                <th>Scheduled - 24h</th>
+                <th>New Time</th>
+                <th>New Time - 24h</th>
+                <th>Origin</th>
+                <th>Remarks</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody id="train-board">{trainsInfo}</tbody>
+          </table>
+        ) : (
+          // <table>
+          //   <thead>
+          //     <Time
+          //       stationName={this.props.stationName}
+          //       timeZone={this.props.timeZone}
+          //     />
+          //     <tr>
+          //       <th>Train Number</th>
+          //       <th>Train Name</th>
+          //       <th>Destination</th>
+          //       <th>Scheduled Time</th>
+          //       <th>Scheduled - 24h</th>
+          //       <th>New Time</th>
+          //       <th>New Time - 24h</th>
+          //       <th>Origin</th>
+          //       <th>Remarks</th>
+          //     </tr>
+          //   </thead>
+          //   <tbody id="train-board">
+          //     <tr>
+          //       <th colSpan="2">{null}</th>
+          //       <th />
+          //       <th colSpan="3">No Trains Found</th>
+          //       <th />
+          //       <th colSpan="2">{null}</th>
+          //     </tr>
+          //   </tbody>
+          // </table>
+          <Loading />
+        )}
       </React.Fragment>
     );
   }
