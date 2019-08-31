@@ -173,12 +173,6 @@ my A: What to do?
 Q: should def new and def edit have anything in them?
 my A: I think not because I am not calling any forms to be returned. 
 
-Q: difference between put and patch
-my A: Put is new entry, patch is edit in html, but Rails does things differently. 
-
-Q: Should i use put instead for updates?
-my A: I tried switching Put to Patch, no difference.
-
 Q: How to get by id the right record to update?
 Am I doing it the right way? shouldn't the route be `${url}/${id} =>>>> /EDIT??
 or does edit just serve the forms and update is the db call?
@@ -313,6 +307,7 @@ SUGGESTIONS
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 DONE
+Center text in Navbar
 Add time zone offsets
 
 Q: Fix create payload in reducer? clean it up somehow?
