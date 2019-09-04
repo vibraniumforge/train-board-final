@@ -74,7 +74,7 @@ class UserBoard extends Component {
                 className="board-button"
                 onClick={e => this.onUpdateTrain(e)}
               >
-                Update
+                Edit
               </button>
             </td>
             <td>
