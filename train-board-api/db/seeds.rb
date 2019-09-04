@@ -16,3 +16,5 @@ trains = Train.create([
     {destination: "Melbourne - Southern Cross", newtime:"", newtime24:"", origin: "Adelaide - Parklands Terminal", remarks_boarding: "On Time", scheduled: "0700", scheduled24: "1900", service: "The Overland", trainno: "13"},
     {destination: "Hogwart's Caslte", newtime:"", newtime24:"", origin: "London - King's Cross", remarks_boarding: "On Time", scheduled: "0800", scheduled24: "2000", service: "Hogwart's Express", trainno: "15"},
 ])
+
+puts "Seeds done."
