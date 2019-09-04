@@ -53,10 +53,12 @@ class Errors extends Component {
     });
   };
 
-  handleChange = e => {};
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
-    console.log("this.props.trainErrors=", this.props.trainErrors);
+    // console.log("this.props.trainErrors=", this.props.trainErrors);
     // const errors =
     // this.props.trainErrors &&
     //   this.props.trainErrors.map((error, index) => {

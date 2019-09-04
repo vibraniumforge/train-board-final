@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { createTrain } from "../actions/userTrainActions";
 import Errors from "../components/Errors";
 import Sample from "../components/Sample";
-import EditTrainForm from "../components/EditTrainForm";
+import EditTrainForm from "../containers/EditTrainForm";
 
 class TrainForm extends Component {
   constructor(props) {
@@ -38,6 +38,8 @@ class TrainForm extends Component {
     //   }
     // });
     this.props.createTrain(newTrain);
+    this.props.history.push("/view_user_trains");
+    this.clearForm();
   };
 
   clearForm = () => {

@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import AmtrakStationSearch from "./containers/AmtrakStationSearch";
 import AmtrakStationSelect from "./containers/AmtrakStationSelect";
 import NewTrainForm from "./containers/NewTrainForm";
-import ViewUserTrains from "./containers/ViewUserTrains";
+import ViewUserTrains from "./components/ViewUserTrains";
 
 export default (
   <Router>
