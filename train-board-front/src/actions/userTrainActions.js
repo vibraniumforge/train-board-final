@@ -56,15 +56,12 @@ export const createTrain = train => {
     fetch(`${url}`, data)
       .then(res => {
         if (res.ok) {
-          res
-            .json()
-            .then(res => {
-              dispatch({
-                type: "CREATE_TRAIN",
-                payload: res.data
-              });
-            })
-            .then(this.props.history.push("/view_user_trains"));
+          res.json().then(res => {
+            dispatch({
+              type: "CREATE_TRAIN",
+              payload: res.data
+            });
+          });
         } else {
           res.json().then(res =>
             dispatch({
