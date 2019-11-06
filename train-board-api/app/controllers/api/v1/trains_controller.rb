@@ -26,6 +26,7 @@ module Api::V1
         render json: { message: "Train successfully updated.", success: true, data: @train }, status: 200
       else
         render json: { message: "Train not successfully updated.", success:false, data: @train.errors }, status: 406
+        puts @train.errros.full_messages
       end
     end
 
