@@ -12,6 +12,7 @@ module Api::V1
         render json: { message: "Train successfully created.", success: true, data: @train }, status: 200
       else
         render json: { message: "Train not successfully created.", success:false, data: @train.errors }, status: 406
+        puts @train.errors.full_messages
       end
     end
 

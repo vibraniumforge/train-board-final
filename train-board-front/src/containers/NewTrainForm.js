@@ -12,15 +12,15 @@ class TrainForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      destination: "",
-      newtime: "",
-      newtime24: "",
-      origin: "",
-      remarks_boarding: "",
-      scheduled: "",
-      scheduled24: "",
-      service: "",
-      trainno: ""
+      destination: "1234",
+      newtime: "1234",
+      newtime24: "1234",
+      origin: "1234",
+      remarks_boarding: "1234",
+      scheduled: "1234",
+      scheduled24: "1234",
+      service: "1234",
+      trainno: "1234"
     };
   }
 
@@ -82,7 +82,7 @@ class TrainForm extends Component {
               type="text"
               id="new-time-24"
               name="newtime24"
-              placeholder="New Time HHMM 24h (if late)."
+              placeholder="New Time (if late) HHMM 24h."
               value={this.state.newtime24}
               onChange={this.handleChange}
             />

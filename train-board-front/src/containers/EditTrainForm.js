@@ -53,6 +53,8 @@ class TrainForm extends Component {
     console.log("trainform onSubmit fires");
     e.preventDefault();
     const updatedTrain = this.state;
+    console.log("this.props.trainToUpdate.id=", this.props.trainToUpdate.id);
+    console.log("updatedTrain=", updatedTrain);
     this.props.updateTrain(this.props.trainToUpdate.id, updatedTrain);
     this.props.history.push("/view_user_trains");
     this.clearForm();
@@ -73,7 +75,7 @@ class TrainForm extends Component {
   };
 
   render() {
-    console.log("this.props.trainToUpdate=", this.props.trainToUpdate);
+    // console.log("this.props.trainToUpdate=", this.props.trainToUpdate);
     return (
       <React.Fragment>
         <form id="new-train" className="center">

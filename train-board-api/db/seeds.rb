@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Train.destroy_all
+
 trains = Train.create([
     {destination: "Paris - Gare du Nord", newtime:"0115", newtime24:"1315", origin: "London - St. Pancras", remarks_boarding: "L 15M", scheduled: "0100", scheduled24: "1300", service: "Eurostar", trainno: "1"},
     {destination: "Brussels - Gare du Midi", newtime:"", newtime24:"", origin: "Paris - Gare du Nord", remarks_boarding: "On Time", scheduled: "0200", scheduled24: "1400", service: "Thalys", trainno: "3"},
