@@ -114,3 +114,17 @@ form input {
   color: red;
   font-size: 20px;
 }
+
+.submit-btn {
+  margin: 10px;
+  background-color: navy;
+  color: red;
+  font-size: 20px;
+}
+
+.clear-btn {
+  margin: 10px;
+  background-color: red;
+  color: navy;
+  font-size: 20px;
+}
