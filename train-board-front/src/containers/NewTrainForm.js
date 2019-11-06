@@ -138,10 +138,20 @@ class TrainForm extends Component {
             />
           </div>
           <br />
-          <button type="button" id="submit" onClick={e => this.handleSubmit(e)}>
+          <button
+            className="submit-btn"
+            type="button"
+            id="submit"
+            onClick={e => this.handleSubmit(e)}
+          >
             Submit
           </button>
-          <button type="button" id="clear" onClick={this.clearForm}>
+          <button
+            className="clear-btn"
+            type="button"
+            id="clear"
+            onClick={this.clearForm}
+          >
             Clear
           </button>
         </form>
